@@ -262,8 +262,8 @@
     --et-glass-opacity: 0.85;
     --et-font-size: 15px;
     --et-font-family: 'Inter', sans-serif;
-    --et-fab-size: 56px;
-    --et-fab-opacity: 1;
+    --et-fab-size: 30px;
+    --et-fab-opacity: 0.3;
     --et-line-spacing: 1.45;
     --et-paragraph-spacing: 10px;
 
@@ -323,12 +323,12 @@ html.et-bg-light {
     width: var(--et-fab-size);
     height: var(--et-fab-size);
     border-radius: 50%;
-    background: var(--et-theme-color);
+    background: rgb(237 83 149);
     color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: calc(var(--et-fab-size) * 0.42);
+    font-size: calc(var(--et-fab-size) * 0.40);
     cursor: pointer;
     z-index: 1999;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
@@ -6889,6 +6889,7 @@ html.et-bg-light {
 
 .et-sl-prev-msg.et-sl-expanded .et-sl-prev-text {
     -webkit-line-clamp: unset;
+    line-clamp: unset;
 }
 
 .et-sl-prev-char {
@@ -6925,6 +6926,7 @@ html.et-bg-light {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 4;
+    line-clamp: 4;
     overflow: hidden;
     white-space: pre-wrap;
     word-break: break-word;
@@ -10036,6 +10038,7 @@ details.et-te-advanced[open] .et-te-advanced-toggle::before { transform: rotate(
     outline: none;
     transition: border-color 0.18s, box-shadow 0.18s;
     -webkit-appearance: none;
+    appearance: none;
 }
 
 .et-ctx-textarea::placeholder {
@@ -10061,6 +10064,7 @@ details.et-te-advanced[open] .et-te-advanced-toggle::before { transform: rotate(
     outline: none;
     transition: border-color 0.18s, box-shadow 0.18s;
     -webkit-appearance: none;
+    appearance: none;
 }
 
 .et-ctx-text-input::placeholder {

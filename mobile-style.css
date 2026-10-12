@@ -1,12 +1,12 @@
-﻿/* ============================================================
-   EchoText â€” Mobile / iOS Stylesheet
+/* ============================================================
+   EchoText Mobile / iOS Stylesheet
    Loaded ONLY when isMobileDevice() returns true in index.js.
    All rules use !important to override inline styles set by the
    desktop positioning logic without touching style.css itself.
    ============================================================ */
 
 /* ============================================================
-   FLOATING ACTION BUTTON â€” safe-area anchoring
+   FLOATING ACTION BUTTON ” safe-area anchoring
    Inline position styles are cleared by positionFab() on mobile,
    so these CSS rules take full effect without needing !important
    on positioning properties. z-index bump stays important to
@@ -26,8 +26,8 @@
     /* Stay above SillyTavern's mobile header/drawer chrome */
     z-index: 99990 !important;
     /* Minimum 44 Ã— 44 px tap target (Apple HIG) */
-    min-width:  44px !important;
-    min-height: 44px !important;
+    min-width:  30px !important;
+    min-height: 30px !important;
 }
 
 /* Ensure the button is fully gone when panel is open or disabled on mobile */
@@ -48,7 +48,7 @@
 }
 
 /* ============================================================
-   FLOATING PANEL â€” full-screen on mobile
+   FLOATING PANEL ” full-screen on mobile
    The JS openPanel() mobile branch skips setting width/height/
    left/top inline styles, so all of these will apply cleanly.
    ============================================================ */
@@ -65,9 +65,9 @@
     bottom: 0 !important;
     width:  100% !important;
     height: calc(100% - env(safe-area-inset-top, 0px)) !important;
-    /* Flush edges â€” no rounded corners on full-screen mobile sheet */
+    /* Flush edges ” no rounded corners on full-screen mobile sheet */
     border-radius: 0 !important;
-    /* No minimum constraints needed â€” viewport IS the panel */
+    /* No minimum constraints needed ” viewport IS the panel */
     min-width:  unset !important;
     min-height: unset !important;
     /* Fade-only animation to avoid iOS compositor jank from scale */
@@ -75,18 +75,18 @@
     transform:  none !important;
 }
 
-/* Hide resize handle chrome â€” meaningless on full-screen mobile */
+/* Hide resize handle chrome ” meaningless on full-screen mobile */
 .et-resize-handle {
     display: none !important;
 }
 
-/* Remove drag cursor â€” panel isn't draggable on mobile */
+/* Remove drag cursor ” panel isn't draggable on mobile */
 .et-panel-header {
     cursor: default !important;
 }
 
 /* ============================================================
-   MESSAGES AREA â€” iOS momentum scroll + overscroll containment
+   MESSAGES AREA ” iOS momentum scroll + overscroll containment
    ============================================================ */
 
 .et-messages {
@@ -97,7 +97,7 @@
 }
 
 /* ============================================================
-   INPUT BAR â€” sticks above the on-screen keyboard
+   INPUT BAR ” sticks above the on-screen keyboard
    The visualViewport resize handler in index.js shrinks the panel
    height when the keyboard appears, so position:sticky keeps the
    bar at the new visual bottom automatically.
@@ -120,7 +120,7 @@
 }
 
 /* ============================================================
-   TOUCH TARGET SIZES â€” Apple HIG minimum 44 Ã— 44 px
+   TOUCH TARGET SIZES ” Apple HIG minimum 44 Ã— 44 px
    ============================================================ */
 
 .et-header-btn,
@@ -136,7 +136,7 @@
 }
 
 /* ============================================================
-   DROP-DOWN MENUS â€” cap height so they never overflow viewport
+   DROP-DOWN MENUS ” cap height so they never overflow viewport
    ============================================================ */
 
 .et-dd-menu {
@@ -144,14 +144,14 @@
 }
 
 /* ============================================================
-   LIGHTBOX â€” safe-area padding + full-width container
+   LIGHTBOX ” safe-area padding + full-width container
    ============================================================ */
 
 .et-generated-image-lightbox-overlay {
     /* Absolute (not fixed) so it fills the portal, not the offset layout viewport.
        position:fixed inside a position:fixed portal resolves against the layout
-       viewport on iOS â€” which sits above the visible screen when the address bar
-       is showing â€” causing the overlay to render off the top of the screen.     */
+       viewport on iOS ” which sits above the visible screen when the address bar
+       is showing ” causing the overlay to render off the top of the screen.     */
     position: absolute !important;
     inset: 0 !important;
     /* Account for notch / home indicator on iOS */
@@ -185,14 +185,14 @@
 }
 
 .et-lightbox-img-wrap {
-    /* Don't restrict the wrap height â€” image drives the size */
+    /* Don't restrict the wrap height ” image drives the size */
     min-height: 0 !important;
     flex: 0 0 auto !important;
     /* Clip slide overshoot so images don't bleed outside the container */
     overflow: hidden !important;
 }
 
-/* â”€â”€ Directional slide on image-change â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/*  Directional slide on image-change  */
 /*
    data-nav-dir is stamped on .et-lightbox-img-wrap by navigateTo() in index.js:
      "fwd"  â†’ going forward (next image)
@@ -202,25 +202,25 @@
    In  phase: new image slides in from the opposite edge via keyframe animation.
 */
 
-/* Out â€” swipe left (next): slide current image to the left */
+/* Out ” swipe left (next): slide current image to the left */
 [data-nav-dir="fwd"] .et-lightbox-img-nav-fade {
     opacity: 0 !important;
     transform: translateX(-28px) !important;
 }
 
-/* Out â€” swipe right (prev): slide current image to the right */
+/* Out ” swipe right (prev): slide current image to the right */
 [data-nav-dir="bck"] .et-lightbox-img-nav-fade {
     opacity: 0 !important;
     transform: translateX(28px) !important;
 }
 
-/* In â€” after swipe left (next): new image enters from the right */
+/* In ” after swipe left (next): new image enters from the right */
 @keyframes et-nav-in-fwd {
     from { opacity: 0; transform: translateX(28px); }
     to   { opacity: 1; transform: translateX(0); }
 }
 
-/* In â€” after swipe right (prev): new image enters from the left */
+/* In ” after swipe right (prev): new image enters from the left */
 @keyframes et-nav-in-bck {
     from { opacity: 0; transform: translateX(-28px); }
     to   { opacity: 1; transform: translateX(0); }
@@ -258,7 +258,7 @@
 }
 
 /* ============================================================
-   SETTINGS MODAL â€” full-screen
+   SETTINGS MODAL ” full-screen
    ============================================================ */
 
 .et-settings-modal {
@@ -283,13 +283,13 @@
 }
 
 /* ============================================================
-   CONTEXT OVERRIDE MODAL â€” full-screen
+   CONTEXT OVERRIDE MODAL ” full-screen
    Same portal escape as gallery/save-load: fixed â†’ absolute so
    the overlay fills the portal rather than the layout viewport.
    ============================================================ */
 
 .et-ctx-overlay {
-    /* Absolute (not fixed) â€” same iOS layout-viewport issue as gallery/lightbox */
+    /* Absolute (not fixed) ” same iOS layout-viewport issue as gallery/lightbox */
     position: absolute !important;
     inset: 0 !important;
     /* Portal has pointer-events:none; child must opt back in explicitly */
@@ -309,14 +309,14 @@
 }
 
 /* ============================================================
-   SAVE / LOAD MODAL â€” full-screen
+   SAVE / LOAD MODAL ” full-screen
    ============================================================ */
 
 /* The overlay is moved into et-portal by moveModalToPortal('#et-sl-overlay').
-   Portal has pointer-events:none â€” overlay must opt back in explicitly.
+   Portal has pointer-events:none ” overlay must opt back in explicitly.
    The inner modal fills the full viewport on mobile.              */
 .et-sl-overlay {
-    /* Absolute (not fixed) â€” same iOS layout-viewport issue as gallery/lightbox */
+    /* Absolute (not fixed) ” same iOS layout-viewport issue as gallery/lightbox */
     position: absolute !important;
     inset: 0 !important;
     /* Portal has pointer-events:none; child must opt back in explicitly */
@@ -407,11 +407,11 @@
 }
 
 /* ============================================================
-   GALLERY MODAL â€” full-screen
+   GALLERY MODAL ” full-screen
    ============================================================ */
 
 .et-gallery-overlay {
-    /* Absolute (not fixed) â€” same iOS layout-viewport issue as lightbox/saveload */
+    /* Absolute (not fixed) ” same iOS layout-viewport issue as lightbox/saveload */
     position: absolute !important;
     inset: 0 !important;
     padding: 0 !important;
@@ -542,7 +542,7 @@
 }
 
 /* ============================================================
-   DOT MENUS â€” cap height & ensure they don't overflow
+   DOT MENUS ” cap height & ensure they don't overflow
    ============================================================ */
 
 .et-dots-menu {
@@ -552,7 +552,7 @@
 }
 
 /* ============================================================
-   CHARACTER PICKER â€” full height, scrollable on mobile
+   CHARACTER PICKER ” full height, scrollable on mobile
    ============================================================ */
 
 .et-char-picker-dropdown {
@@ -562,7 +562,7 @@
 }
 
 /* ============================================================
-   PANEL ACCORDION (settings-in-panel) â€” overflow-safe
+   PANEL ACCORDION (settings-in-panel) ” overflow-safe
    ============================================================ */
 
 .et-accordion-content {
@@ -572,7 +572,7 @@
 }
 
 /* ============================================================
-   MEMORY SAVE MODAL â€” keep it within mobile viewport
+   MEMORY SAVE MODAL ” keep it within mobile viewport
    ============================================================ */
 
 .et-mem-save-modal {
@@ -583,7 +583,7 @@
 }
 
 /* ============================================================
-   GROUP BAR â€” prevent horizontal bleed on narrow screens
+   GROUP BAR ” prevent horizontal bleed on narrow screens
    ============================================================ */
 
 .et-group-bar {
@@ -594,7 +594,7 @@
 }
 
 /* ============================================================
-   THEME EDITOR â€” mobile overrides
+   THEME EDITOR ” mobile overrides
    On narrow screens the two-column layout collapses to a single
    scrollable column so the list and editor stack vertically.
    ============================================================ */
@@ -646,7 +646,7 @@
     padding: 14px !important;
 }
 
-/* Full-width action buttons â€” easier tap targets */
+/* Full-width action buttons ” easier tap targets */
 .et-te-editor-actions,
 .et-te-pp-actions {
     flex-direction: column !important;
@@ -676,7 +676,7 @@
 
 
 /* ============================================================
-   THEME EDITOR â€” mobile layout
+   THEME EDITOR ” mobile layout
    Stacks the list and editor vertically; uses full-screen overlay
    so there is no squished two-column layout on small viewports.
    ============================================================ */
@@ -744,7 +744,7 @@
     font-size: 1rem !important;
 }
 
-/* Action buttons â€” full-width on very narrow screens */
+/* Action buttons ” full-width on very narrow screens */
 .et-te-editor-actions {
     flex-direction: row !important;
 }
@@ -757,13 +757,13 @@
 }
 
 /* ============================================================
-   THEME EDITOR MODAL â€” full-screen
+   THEME EDITOR MODAL ” full-screen
    Same portal escape as gallery/save-load: fixed â†’ absolute so
    the overlay fills the portal rather than the layout viewport.
    ============================================================ */
 
 .et-te-overlay {
-    /* Absolute (not fixed) â€” same iOS layout-viewport issue as gallery/lightbox */
+    /* Absolute (not fixed) ” same iOS layout-viewport issue as gallery/lightbox */
     position: absolute !important;
     inset: 0 !important;
     /* Portal has pointer-events:none; child must opt back in explicitly */
@@ -778,7 +778,7 @@
     border-radius: 0 !important;
 }
 
-/* "Edit Custom Themes" open button â€” full width */
+/* "Edit Custom Themes" open button ” full width */
 .et-te-open-btn {
     width: 100% !important;
     justify-content: center !important;
@@ -793,10 +793,10 @@
 }
 
 /* ============================================================
-   GALLERY â€” mobile single-column full-width layout
+   GALLERY ” mobile single-column full-width layout
    ============================================================ */
 
-/* Hide the grid/list view toggle â€” grid-only on mobile */
+/* Hide the grid/list view toggle ” grid-only on mobile */
 #et-gallery-view-pill {
     display: none !important;
 }
@@ -825,7 +825,7 @@
     align-items: center !important;
 }
 
-/* â”€â”€ Single-column full-width card list â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/*  Single-column full-width card list  */
 
 /* Stack cards vertically, stretching to the full modal width   */
 .et-gallery-modal .et-gallery-grid {
@@ -856,7 +856,7 @@
 
 /* Image fills the full card width.
    Height is driven by --et-gallery-thumb-size so the thumbnail
-   size slider continues to work in real-time on mobile â€”
+   size slider continues to work in real-time on mobile ”
    it controls the image preview height rather than card width.  */
 .et-gallery-modal .et-gallery-thumb {
     display: block !important;
@@ -866,19 +866,19 @@
 }
 
 /* ============================================================
-   SLIDERS â€” iOS / iPhone touch fix
+   SLIDERS ” iOS / iPhone touch fix
    touch-action: none stops the scroll container from claiming
    the gesture. All value-tracking is handled by the JS patch
-   in settings-modal.js â€” no visual changes needed here.
+   in settings-modal.js ” no visual changes needed here.
    ============================================================ */
 
 .et-slider {
     touch-action: none !important;
 }
 
-/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-   SWIPED MESSAGES â€” Mobile overrides
-   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* 
+   SWIPED MESSAGES ” Mobile overrides
+    */
 
 /* On mobile the touch-swipe gesture replaces hover-to-reveal.
    Nav bar stays hidden at rest; appears on :active so tapping

@@ -487,7 +487,7 @@ In **Group Chat** mode, a member bar appears at the bottom of the panel with qui
 1. Open SillyTavern and navigate to **Extensions → Install Extension**
 2. Paste the repository URL:
    ```
-   https://github.com/mattjaybe/SillyTavern-EchoText
+  https://github.com/julez122/SillyTavern-EchoText
    ```
 3. Click **Install** — EchoText will appear in your Extensions panel
 
