@@ -62,7 +62,7 @@
     background: rgba(255, 255, 255, 0.06);
     border: 1px solid rgba(255, 255, 255, 0.14);
     border-radius: var(--et-radius-sm);
-    padding: 10px 14px;
+    padding: 5px 12px;
     cursor: pointer;
     transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
     min-height: 44px;
@@ -193,8 +193,8 @@
 }
 
 .et-dd-swatch {
-    width: 14px;
-    height: 14px;
+    width: 11px;
+    height: 11px;
     border-radius: 50%;
     border: 1px solid rgba(255, 255, 255, 0.2);
     display: inline-block;
@@ -209,14 +209,15 @@
 }
 
 .et-dd-theme-label {
-    font-size: 0.88rem;
+    font-size: 0.8rem;
     font-weight: 600;
     color: var(--et-text);
     white-space: nowrap;
+    letter-spacing: 1px;
 }
 
 .et-dd-theme-desc {
-    font-size: 0.72rem;
+    font-size: 0.65rem;
     color: var(--et-text-muted);
     white-space: nowrap;
     overflow: hidden;
@@ -234,10 +235,11 @@
     font-size: 0.88rem;
     font-weight: 600;
     color: var(--et-text);
+    letter-spacing: 1px;
 }
 
 .et-dd-font-preview {
-    font-size: 0.95rem;
+    font-size: 0.75rem;
     color: var(--et-text-muted);
     line-height: 1.3;
 }
@@ -668,7 +670,7 @@ html.et-bg-light {
     display: flex;
     flex-direction: column;
     gap: 3px;
-    padding: 8px 10px;
+    padding: 5px 10px;
     border-radius: var(--et-radius-sm);
     border: 1px solid rgba(255, 255, 255, 0.10);
     background: rgba(0, 0, 0, 0.18);
@@ -679,14 +681,14 @@ html.et-bg-light {
 }
 
 .et-proactive-insight-label {
-    font-size: 0.69rem;
+    font-size: 0.6rem;
     text-transform: uppercase;
     letter-spacing: 0.35px;
     color: var(--et-text-muted);
 }
 
 .et-proactive-insight-val {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 600;
     color: var(--et-text);
     line-height: 1.25;
@@ -708,8 +710,8 @@ html.et-bg-light {
     background: rgba(255, 255, 255, 0.06);
     color: var(--et-text);
     font-weight: 600;
-    font-size: 0.82rem;
-    padding: 8px 12px;
+    font-size: 0.7rem;
+    padding: 5px 10px;
     cursor: pointer;
     transition: border-color 0.18s, background 0.18s, transform 0.12s, box-shadow 0.18s;
 }
@@ -946,7 +948,7 @@ html.et-bg-light {
 /* Accordion-context overrides — tighter spacing inside panel */
 .et-accordion-content .et-activity-btn {
     min-height: 60px;
-    padding: 8px 4px;
+    padding: 8px 0px;
     gap: 4px;
 }
 
@@ -1029,10 +1031,12 @@ html.et-bg-light {
 
 .et-imagetrig-intro {
     margin: 0;
-    font-size: 0.78rem;
+    font-size: 0.65rem;
     line-height: 1.55;
     color: var(--et-text-muted, rgba(255,255,255,0.5));
-    padding-top: 2px;
+    padding-top: 0px;
+    border-bottom: 1px solid;
+    padding-bottom: inherit;
 }
 
 /* ── Category group ─────────────────────────────────────────────────────── */
@@ -1040,6 +1044,8 @@ html.et-bg-light {
     display: flex;
     flex-direction: column;
     gap: 7px;
+    border-bottom: 1px solid rgb(158 65 126);
+    padding-bottom: inherit;
 }
 
 .et-imagetrig-group-label {
@@ -1050,8 +1056,9 @@ html.et-bg-light {
     font-weight: 700;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    color: var(--et-theme-color);
+    color: rgb(158 65 126);
     opacity: 0.9;
+    margin-bottom: 8px;
 }
 
 .et-imagetrig-group-label i {
@@ -1065,6 +1072,8 @@ html.et-bg-light {
     letter-spacing: 0;
     color: var(--et-text-muted, rgba(255,255,255,0.45));
     margin-left: 2px;
+    transform: translateY(-3px);
+    margin-bottom: 5px;
 }
 
 /* ── Pill chips ─────────────────────────────────────────────────────────── */
@@ -1076,7 +1085,7 @@ html.et-bg-light {
 
 .et-imagetrig-pill {
     display: inline-block;
-    padding: 3px 9px;
+    padding: 3px 0px 3px 11px;
     border-radius: 20px;
     font-size: 0.74rem;
     line-height: 1.4;
@@ -1096,7 +1105,7 @@ html.et-bg-light {
 .et-imagetrig-tip {
     margin: 0;
     padding: 8px 11px;
-    font-size: 0.76rem;
+    font-size: 0.65rem;
     line-height: 1.5;
     color: var(--et-text-muted, rgba(255,255,255,0.5));
     background: rgba(255, 255, 255, 0.04);
@@ -4179,13 +4188,14 @@ html.et-bg-light {
     background: rgba(255, 255, 255, 0.06);
     border: 1px solid rgba(255, 255, 255, 0.14);
     border-radius: var(--et-radius-sm);
-    padding: 10px 14px;
+    padding: 5px 10px;
     color: var(--et-text);
     font-size: 0.9rem;
     font-family: var(--et-font-family);
     outline: none;
     transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
     margin-bottom: 8px;
+    margin-top: 10px;
 }
 
 .et-input-text:hover {
@@ -4445,6 +4455,8 @@ html.et-bg-light {
     align-items: center;
     gap: 10px;
     margin-bottom: 12px;
+    border-bottom: 1px solid var(--SmartThemeBorderColor);
+    padding-bottom: 15px;
 }
 
 .et-settings-drawer .et-open-settings-btn {
@@ -4857,7 +4869,7 @@ html.et-bg-light {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 12px 14px;
+    padding: 8px 14px;
     background: rgba(255, 255, 255, 0.04);
     cursor: pointer;
     transition: background 0.2s ease;
@@ -4873,9 +4885,9 @@ html.et-bg-light {
     display: flex;
     align-items: center;
     gap: 8px;
-    font-weight: 600;
-    font-size: 0.9rem;
-    color: var(--et-text);
+    font-weight: 500;
+    font-size: 0.8rem;
+    color: rgba(200, 210, 230, 0.85);
 }
 
 .et-accordion-arrow {
@@ -4939,10 +4951,18 @@ html.et-bg-light {
 }
 
 .et-accordion-content .et-hint {
-    font-size: 0.8rem;
+    font-size: 0.65rem;
     color: rgba(200, 210, 230, 0.85);
-    margin-top: 5px;
+    margin-top: 3px;
     line-height: 1.4;
+    border-bottom: 1px solid rgba(200, 210, 230, 0.25);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid var(--SmartThemeBorderColor);
+    padding-bottom: 15px;
+    padding-bottom: 25px;
 }
 
 .et-accordion-content .et-field-label {
@@ -4959,16 +4979,19 @@ html.et-bg-light {
 .et-accordion-content .et-toggle-row {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 3px;
     cursor: pointer;
 }
 
 .et-accordion-content .et-label-text {
-    font-size: 0.88rem;
+    font-size: 0.85rem;
     color: var(--et-text);
     display: flex;
     align-items: center;
     gap: 8px;
+    /* text-decoration: underline; */
+    /* text-underline-offset: 3px; */
+    font-weight: 600;
 }
 
 .et-accordion-content .et-slider-row {
@@ -7839,9 +7862,9 @@ html.et-bg-light {
 /* ── Individual prompt card ──────────────────────────────── */
 
 .et-pm-card {
-    background: rgba(255, 255, 255, 0.035);
+    /* background: rgba(255, 255, 255, 0.035); */
     border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: var(--et-radius-sm, 8px);
+    /* border-radius: var(--et-radius-sm, 8px); */
     margin-bottom: 10px;
     overflow: hidden;
     transition: border-color 0.2s;
@@ -7888,7 +7911,7 @@ html.et-bg-light {
 }
 
 .et-pm-desc {
-    font-size: 0.73rem;
+    font-size: 0.65rem;
     color: var(--et-text-muted);
     line-height: 1.45;
 }
@@ -7983,16 +8006,18 @@ html.et-bg-light {
     min-height: 90px;
     max-height: 320px;
     resize: vertical;
-    background: rgba(0, 0, 0, 0.16);
+    background: rgba(255, 255, 255, 0.0);
     border: none;
-    border-top: 1px solid transparent;
+    border: 1px solid rgba(255, 255, 255, 0.08);
     color: var(--et-text);
     font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', monospace;
-    font-size: 0.76rem;
+    font-size: 0.7rem;
     line-height: 1.6;
     padding: 10px 12px;
     outline: none;
     transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+    margin-top: 0px;
+    border-radius: unset;
 }
 
 .et-pm-textarea:focus {
@@ -8046,10 +8071,11 @@ html.et-bg-light {
     font-size: 0.69rem;
     background: rgba(255, 255, 255, 0.07);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 1px 5px;
+    /* padding: 1px 5px; */
     border-radius: 4px;
     color: var(--et-theme-color);
     opacity: 0.9;
+    line-height: 1.8;
 }
 
 /* ============================================================
@@ -10296,7 +10322,7 @@ details.et-te-advanced[open] .et-te-advanced-toggle::before { transform: rotate(
 
 .et-mem-empty {
     text-align: center;
-    padding: 24px 12px;
+    padding: 25px 12px;
     color: var(--et-text-muted);
     font-size: 0.82rem;
     line-height: 1.65;
@@ -11566,6 +11592,8 @@ textarea.et-mem-save-snippet-edit::placeholder {
     font-weight: 600;
     color: var(--et-text-muted, rgba(255,255,255,0.50));
     letter-spacing: 0.2px;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
 }
 
 .et-mem-hl-style-btns {
@@ -11581,9 +11609,9 @@ textarea.et-mem-save-snippet-edit::placeholder {
     background: rgba(255,255,255,0.04);
     border: 1px solid rgba(255,255,255,0.09);
     border-radius: 9px;
-    padding: 7px 10px;
+    padding: 5px 10px;
     cursor: pointer;
-    font-size: 0.78rem;
+    font-size: 0.6rem;
     font-weight: 500;
     color: rgba(255,255,255,0.60);
     font-family: inherit;
@@ -11855,8 +11883,8 @@ textarea.et-mem-save-snippet-edit::placeholder {
 .et-ctx-wi-mode-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 6px;
-    margin-bottom: 10px;
+    gap: 10px;
+    margin-bottom: 15px;
 }
 
 .et-ctx-wi-mode-btn,
@@ -11866,7 +11894,7 @@ textarea.et-mem-save-snippet-edit::placeholder {
     align-items: center;
     justify-content: center;
     gap: 4px;
-    padding: 9px 6px 8px;
+    padding: 5px 0px 5px;
     border-radius: var(--et-radius-sm);
     border: 1px solid rgba(255, 255, 255, 0.10);
     background: rgba(255, 255, 255, 0.03);
