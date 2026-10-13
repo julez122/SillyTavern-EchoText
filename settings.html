@@ -49,7 +49,8 @@
                                 <input type="checkbox" id="et_swiped_messages_panel" class="checkbox">
                                 <span class="et-label-text"><i class="fa-solid fa-clone"></i> Swiped Messages</span>
                             </label>
-                            <div class="et-hint">Save previous AI responses when regenerating. Use arrows (or swipe on mobile) to navigate between versions.</div>
+                            <div class="et-hint">Save previous AI responses when regenerating. Use arrows (or swipe on
+                                mobile) to navigate between versions.</div>
                         </div>
 
                         <div class="et-field">
@@ -64,9 +65,11 @@
                         <div class="et-field">
                             <label class="et-toggle-row" for="et_auto_load_last_char_panel">
                                 <input type="checkbox" id="et_auto_load_last_char_panel" class="checkbox">
-                                <span class="et-label-text"><i class="fa-solid fa-rotate-left"></i> Auto-Load Last Character</span>
+                                <span class="et-label-text"><i class="fa-solid fa-rotate-left"></i> Auto-Load Last
+                                    Character</span>
                             </label>
-                            <div class="et-hint">When SillyTavern reloads, automatically select the last character you were chatting with.</div>
+                            <div class="et-hint">When SillyTavern reloads, automatically select the last character you
+                                were chatting with.</div>
                         </div>
 
                         <div class="et-field">
@@ -166,7 +169,7 @@
                                 placeholder="Model name">
                         </div>
 
-</div>
+                    </div>
                 </div>
 
                 <!-- Context Section -->
@@ -182,9 +185,11 @@
                         <div class="et-field">
                             <label class="et-toggle-row" for="et_ctx_st_messages_panel">
                                 <input type="checkbox" id="et_ctx_st_messages_panel" class="checkbox">
-                                <span class="et-label-text"><i class="fa-solid fa-comments"></i> EchoText Messages</span>
+                                <span class="et-label-text"><i class="fa-solid fa-comments"></i> EchoText
+                                    Messages</span>
                             </label>
-                            <div class="et-hint et-hint-indent">Include recent EchoText conversation messages as additional context for generation.</div>
+                            <div class="et-hint et-hint-indent">Include recent EchoText conversation messages as
+                                additional context for generation.</div>
                         </div>
 
                         <div class="et-field">
@@ -192,7 +197,10 @@
                                 <input type="checkbox" id="et_ctx_st_context_panel" class="checkbox">
                                 <span class="et-label-text"><i class="fa-solid fa-brain"></i> SillyTavern Context</span>
                             </label>
-                            <div class="et-hint et-hint-indent">In Tethered mode, silently reads the character's recent SillyTavern chat to detect their emotional state. That emotion bleeds into EchoText — if they're distressed in roleplay, they'll carry that mood here. The ST messages are not included in the EchoText conversation.</div>
+                            <div class="et-hint et-hint-indent">In Tethered mode, silently reads the character's recent
+                                SillyTavern chat to detect their emotional state. That emotion bleeds into EchoText — if
+                                they're distressed in roleplay, they'll carry that mood here. The ST messages are not
+                                included in the EchoText conversation.</div>
                         </div>
 
                         <div class="et-field">
@@ -234,7 +242,8 @@
                                 <input type="checkbox" id="et_ctx_authors_note_panel" class="checkbox">
                                 <span class="et-label-text"><i class="fa-solid fa-pen-nib"></i> Author's Note</span>
                             </label>
-                            <div class="et-hint et-hint-indent">Include the character's Author's Note — special per-character instructions set in SillyTavern.</div>
+                            <div class="et-hint et-hint-indent">Include the character's Author's Note — special
+                                per-character instructions set in SillyTavern.</div>
                         </div>
 
                         <div class="et-field">
@@ -243,27 +252,32 @@
                                 <span class="et-label-text"><i class="fa-solid fa-globe"></i> World Info /
                                     Lorebook</span>
                             </label>
-                            <div class="et-hint et-hint-indent">Configure which World Info / Lorebook entries to include in context.</div>
+                            <div class="et-hint et-hint-indent">Configure which World Info / Lorebook entries to include
+                                in context.</div>
                         </div>
 
                         <div class="et-ctx-wi-sub" id="et-ctx-wi-sub_panel" style="display:none;">
                             <div class="et-ctx-wi-mode-grid">
-                                <button class="et-ctx-wi-mode-btn" type="button" data-mode="min_order" title="Include all entries at or above a minimum insertion order value">
+                                <button class="et-ctx-wi-mode-btn" type="button" data-mode="min_order"
+                                    title="Include all entries at or above a minimum insertion order value">
                                     <i class="fa-solid fa-chevron-up et-ctx-wi-mode-icon"></i>
                                     <span class="et-ctx-wi-mode-name">Min Order</span>
                                     <span class="et-ctx-wi-mode-sub">≥ threshold</span>
                                 </button>
-                                <button class="et-ctx-wi-mode-btn" type="button" data-mode="range" title="Include entries whose insertion order falls between a min and max value">
+                                <button class="et-ctx-wi-mode-btn" type="button" data-mode="range"
+                                    title="Include entries whose insertion order falls between a min and max value">
                                     <i class="fa-solid fa-left-right et-ctx-wi-mode-icon"></i>
                                     <span class="et-ctx-wi-mode-name">Order Range</span>
                                     <span class="et-ctx-wi-mode-sub">min → max</span>
                                 </button>
-                                <button class="et-ctx-wi-mode-btn" type="button" data-mode="targeted" title="Include only entries whose insertion order exactly matches one of your values">
+                                <button class="et-ctx-wi-mode-btn" type="button" data-mode="targeted"
+                                    title="Include only entries whose insertion order exactly matches one of your values">
                                     <i class="fa-solid fa-crosshairs et-ctx-wi-mode-icon"></i>
                                     <span class="et-ctx-wi-mode-name">Targeted</span>
                                     <span class="et-ctx-wi-mode-sub">exact values</span>
                                 </button>
-                                <button class="et-ctx-wi-mode-btn" type="button" data-mode="custom" title="Combine range and targeted — entries matching either condition are included">
+                                <button class="et-ctx-wi-mode-btn" type="button" data-mode="custom"
+                                    title="Combine range and targeted — entries matching either condition are included">
                                     <i class="fa-solid fa-sliders et-ctx-wi-mode-icon"></i>
                                     <span class="et-ctx-wi-mode-name">Custom</span>
                                     <span class="et-ctx-wi-mode-sub">full control</span>
@@ -273,17 +287,20 @@
                                 <div class="et-ctx-wi-field" id="et-ctx-wi-row-min_panel">
                                     <i class="fa-solid fa-chevron-up et-ctx-wi-field-icon"></i>
                                     <span class="et-ctx-wi-field-label">Min Order</span>
-                                    <input type="number" class="et-ctx-wi-field-input" id="et_ctx_wi_min_panel" min="0" max="9999" step="1" value="250" placeholder="250">
+                                    <input type="number" class="et-ctx-wi-field-input" id="et_ctx_wi_min_panel" min="0"
+                                        max="9999" step="1" value="250" placeholder="250">
                                 </div>
                                 <div class="et-ctx-wi-field" id="et-ctx-wi-row-max_panel" style="display:none;">
                                     <i class="fa-solid fa-chevron-down et-ctx-wi-field-icon"></i>
                                     <span class="et-ctx-wi-field-label">Max Order</span>
-                                    <input type="number" class="et-ctx-wi-field-input" id="et_ctx_wi_max_panel" min="0" max="9999" step="1" placeholder="no limit">
+                                    <input type="number" class="et-ctx-wi-field-input" id="et_ctx_wi_max_panel" min="0"
+                                        max="9999" step="1" placeholder="no limit">
                                 </div>
                                 <div class="et-ctx-wi-field" id="et-ctx-wi-row-targeted_panel" style="display:none;">
                                     <i class="fa-solid fa-hashtag et-ctx-wi-field-icon"></i>
                                     <span class="et-ctx-wi-field-label">Order Values</span>
-                                    <input type="text" class="et-ctx-wi-field-input" id="et_ctx_wi_targeted_panel" placeholder="e.g. 100, 250, 500">
+                                    <input type="text" class="et-ctx-wi-field-input" id="et_ctx_wi_targeted_panel"
+                                        placeholder="e.g. 100, 250, 500">
                                 </div>
                             </div>
                         </div>
@@ -291,35 +308,48 @@
                         <div class="et-field" style="margin-top:8px;">
                             <label class="et-toggle-row" for="et_strip_thinking_enabled_panel">
                                 <input type="checkbox" id="et_strip_thinking_enabled_panel" class="checkbox">
-                                <span class="et-label-text"><i class="fa-solid fa-filter"></i> Strip Reasoning Tags</span>
+                                <span class="et-label-text"><i class="fa-solid fa-filter"></i> Strip Reasoning
+                                    Tags</span>
                             </label>
-                            <div class="et-hint et-hint-indent">Remove AI reasoning/thinking tag blocks from messages before they enter context. Prevents internal model reasoning from inflating the context window.</div>
+                            <div class="et-hint et-hint-indent">Remove AI reasoning/thinking tag blocks from messages
+                                before they enter context. Prevents internal model reasoning from inflating the context
+                                window.</div>
                         </div>
 
                         <div class="et-strip-tags-sub" id="et_strip_tags_sub_panel">
                             <div class="et-field">
                                 <div class="et-strip-tags-label-row">
-                                    <label class="et-field-label" style="margin-bottom:0;"><i class="fa-solid fa-tags"></i> Tags to Strip</label>
-                                    <button id="et_strip_tag_reset_panel" class="et-strip-tag-reset-btn" title="Reset to defaults"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+                                    <label class="et-field-label" style="margin-bottom:0;"><i
+                                            class="fa-solid fa-tags"></i> Tags to Strip</label>
+                                    <button id="et_strip_tag_reset_panel" class="et-strip-tag-reset-btn"
+                                        title="Reset to defaults"><i class="fa-solid fa-rotate-left"></i> Reset</button>
                                 </div>
                                 <div class="et-strip-tags-chips" id="et_strip_tag_chips_panel"></div>
                                 <div class="et-strip-tags-input-row">
-                                    <input type="text" id="et_strip_tag_input_panel" class="et-input-text" style="margin-bottom:0;flex:1;" placeholder="Add tag name…">
-                                    <button id="et_strip_tag_add_panel" class="et-mem-add-btn" title="Add tag"><i class="fa-solid fa-plus"></i> Add</button>
+                                    <input type="text" id="et_strip_tag_input_panel" class="et-input-text"
+                                        style="margin-bottom:0;flex:1;" placeholder="Add tag name…">
+                                    <button id="et_strip_tag_add_panel" class="et-mem-add-btn" title="Add tag"><i
+                                            class="fa-solid fa-plus"></i> Add</button>
                                 </div>
-                                <div class="et-hint et-hint-indent" style="margin-top:6px;">Tag names without angle brackets (e.g. <code>thinking</code>). Matching is case-insensitive.</div>
+                                <div class="et-hint et-hint-indent" style="margin-top:6px;">Tag names without angle
+                                    brackets (e.g. <code>thinking</code>). Matching is case-insensitive.</div>
                             </div>
                             <div class="et-field" style="margin-top:10px;">
                                 <div class="et-strip-tags-label-row">
-                                    <label class="et-field-label" style="margin-bottom:0;"><i class="fa-solid fa-scissors"></i> Custom Patterns</label>
+                                    <label class="et-field-label" style="margin-bottom:0;"><i
+                                            class="fa-solid fa-scissors"></i> Custom Patterns</label>
                                 </div>
                                 <div class="et-custom-patterns-list" id="et_custom_pattern_list_panel"></div>
                                 <div class="et-custom-pattern-add-row">
-                                    <input type="text" id="et_custom_pattern_start_panel" class="et-input-text" style="margin-bottom:0;flex:1;min-width:0;" placeholder="Start string…">
-                                    <input type="text" id="et_custom_pattern_end_panel" class="et-input-text" style="margin-bottom:0;flex:1;min-width:0;" placeholder="End string…">
-                                    <button id="et_custom_pattern_add_panel" class="et-mem-add-btn" title="Add pattern"><i class="fa-solid fa-plus"></i> Add</button>
+                                    <input type="text" id="et_custom_pattern_start_panel" class="et-input-text"
+                                        style="margin-bottom:0;flex:1;min-width:0;" placeholder="Start string…">
+                                    <input type="text" id="et_custom_pattern_end_panel" class="et-input-text"
+                                        style="margin-bottom:0;flex:1;min-width:0;" placeholder="End string…">
+                                    <button id="et_custom_pattern_add_panel" class="et-mem-add-btn"
+                                        title="Add pattern"><i class="fa-solid fa-plus"></i> Add</button>
                                 </div>
-                                <div class="et-hint et-hint-indent" style="margin-top:6px;">Strip text between two literal strings. Useful for models with unique delimiters (case-insensitive).</div>
+                                <div class="et-hint et-hint-indent" style="margin-top:6px;">Strip text between two
+                                    literal strings. Useful for models with unique delimiters (case-insensitive).</div>
                             </div>
                         </div>
 
@@ -340,7 +370,8 @@
                             <div id="et_theme_panel_container">
                                 <!-- Theme dropdown will be populated by JavaScript -->
                             </div>
-                            <button class="et-te-open-btn" id="et-te-open-btn-panel" title="Create and manage custom colour themes">
+                            <button class="et-te-open-btn" id="et-te-open-btn-panel"
+                                title="Create and manage custom colour themes">
                                 <i class="fa-solid fa-wand-magic-sparkles"></i> Edit Custom Themes
                             </button>
                         </div>
@@ -493,54 +524,67 @@
                             appear in the EchoText panel when triggered.</div>
 
                         <div class="et-field">
-                            <label class="et-field-label"><i class="fa-solid fa-gauge-high"></i> Message Activity</label>
-                            <div class="et-activity-mode-grid" id="et_activity_mode_grid_panel" style="display:grid; grid-template-columns:repeat(3,1fr); gap:6px; margin-top:6px;">
-                                <button class="et-activity-btn" data-mode="quiet" type="button" title="~1–2 messages per day. Minimal API use, great for token budgets.">
+                            <label class="et-field-label"><i class="fa-solid fa-gauge-high"></i> Message
+                                Activity</label>
+                            <div class="et-activity-mode-grid" id="et_activity_mode_grid_panel"
+                                style="display:grid; grid-template-columns:repeat(3,1fr); gap:6px; margin-top:6px;">
+                                <button class="et-activity-btn" data-mode="quiet" type="button"
+                                    title="~1–2 messages per day. Minimal API use, great for token budgets.">
                                     <i class="fa-solid fa-moon"></i>
                                     <span class="et-activity-label">Quiet</span>
                                     <span class="et-activity-sub">~1–2 / day</span>
                                 </button>
-                                <button class="et-activity-btn" data-mode="relaxed" type="button" title="~3 messages per day. Gentle, unobtrusive presence.">
+                                <button class="et-activity-btn" data-mode="relaxed" type="button"
+                                    title="~3 messages per day. Gentle, unobtrusive presence.">
                                     <i class="fa-solid fa-leaf"></i>
                                     <span class="et-activity-label">Relaxed</span>
                                     <span class="et-activity-sub">~3 / day</span>
                                 </button>
-                                <button class="et-activity-btn" data-mode="natural" type="button" title="Default. Dynamic, emotion-influenced frequency — roughly 4–6 per day when active.">
+                                <button class="et-activity-btn" data-mode="natural" type="button"
+                                    title="Default. Dynamic, emotion-influenced frequency — roughly 4–6 per day when active.">
                                     <i class="fa-solid fa-wave-square"></i>
                                     <span class="et-activity-label">Natural</span>
                                     <span class="et-activity-sub">Default</span>
                                 </button>
-                                <button class="et-activity-btn" data-mode="lively" type="button" title="More active. The character reaches out more readily when emotions are elevated.">
+                                <button class="et-activity-btn" data-mode="lively" type="button"
+                                    title="More active. The character reaches out more readily when emotions are elevated.">
                                     <i class="fa-solid fa-bolt"></i>
                                     <span class="et-activity-label">Lively</span>
                                     <span class="et-activity-sub">~6–8 / day</span>
                                 </button>
-                                <button class="et-activity-btn" data-mode="expressive" type="button" title="Most frequent. Minimal floor — the trigger system drives everything. Best with a powerful model.">
+                                <button class="et-activity-btn" data-mode="expressive" type="button"
+                                    title="Most frequent. Minimal floor — the trigger system drives everything. Best with a powerful model.">
                                     <i class="fa-solid fa-fire"></i>
                                     <span class="et-activity-label">Expressive</span>
                                     <span class="et-activity-sub">Unrestricted</span>
                                 </button>
-                                <button class="et-activity-btn" data-mode="custom" type="button" title="Set your own minimum gap between messages.">
+                                <button class="et-activity-btn" data-mode="custom" type="button"
+                                    title="Set your own minimum gap between messages.">
                                     <i class="fa-solid fa-sliders"></i>
                                     <span class="et-activity-label">Custom</span>
                                     <span class="et-activity-sub">Manual</span>
                                 </button>
                             </div>
-                            <div class="et-activity-custom-row" id="et_activity_custom_row_panel" style="display:none; margin-top:10px;">
+                            <div class="et-activity-custom-row" id="et_activity_custom_row_panel"
+                                style="display:none; margin-top:10px;">
                                 <div class="et-slider-row">
-                                    <input type="range" id="et_proactive_rate_limit_panel" class="slider et-slider" min="15" max="720" step="15" value="180">
+                                    <input type="range" id="et_proactive_rate_limit_panel" class="slider et-slider"
+                                        min="15" max="720" step="15" value="180">
                                     <span id="et_proactive_rate_limit_val_panel" class="et-slider-val">180 min</span>
                                 </div>
                             </div>
-                            <div class="et-hint" id="et_activity_mode_hint_panel" style="margin-top:8px;">Natural frequency with emotion-driven variation.</div>
+                            <div class="et-hint" id="et_activity_mode_hint_panel" style="margin-top:8px;">Natural
+                                frequency with emotion-driven variation.</div>
                         </div>
 
                         <div class="et-field">
                             <label class="et-toggle-row" for="et_proactive_emotion_urgency_panel">
                                 <input type="checkbox" id="et_proactive_emotion_urgency_panel" class="checkbox">
-                                <span class="et-label-text"><i class="fa-solid fa-heart-pulse"></i> Emotion-Driven Urgency</span>
+                                <span class="et-label-text"><i class="fa-solid fa-heart-pulse"></i> Emotion-Driven
+                                    Urgency</span>
                             </label>
-                            <div class="et-hint">Strong anticipation or sadness can shorten the wait between messages. Anger and disgust extend it (or trigger a ghost window).</div>
+                            <div class="et-hint">Strong anticipation or sadness can shorten the wait between messages.
+                                Anger and disgust extend it (or trigger a ghost window).</div>
                         </div>
 
                         <div class="et-field">
@@ -606,30 +650,42 @@
                     <div class="et-accordion-content">
 
                         <div class="et-hint" style="margin-bottom:14px;">
-                            Characters can recall shared memories — inside jokes, people you've mentioned, hobbies, favorites, and more. Memories are woven naturally into replies.
+                            Characters can recall shared memories — inside jokes, people you've mentioned, hobbies,
+                            favorites, and more. Memories are woven naturally into replies.
                         </div>
 
                         <div class="et-field">
                             <label class="et-toggle-row" for="et_memory_enabled_panel">
                                 <input type="checkbox" id="et_memory_enabled_panel" class="checkbox">
-                                <span class="et-label-text"><i class="fa-solid fa-brain"></i> Enable Memory System</span>
+                                <span class="et-label-text"><i class="fa-solid fa-brain"></i> Enable Memory
+                                    System</span>
                             </label>
-                            <div class="et-hint">Inject relevant shared memories into the system prompt during generation.</div>
+                            <div class="et-hint">Inject relevant shared memories into the system prompt during
+                                generation.</div>
                         </div>
 
                         <div class="et-field">
                             <label class="et-toggle-row" for="et_memory_auto_extract_panel">
                                 <input type="checkbox" id="et_memory_auto_extract_panel" class="checkbox">
-                                <span class="et-label-text"><i class="fa-solid fa-highlighter"></i> Auto-Highlight Memories</span>
+                                <span class="et-label-text"><i class="fa-solid fa-highlighter"></i> Auto-Highlight
+                                    Memories</span>
                             </label>
-                            <div class="et-hint">Scan your messages for memorable content — hobbies, people, favorites, shared moments — and highlight it. Click any highlight to save it as a memory.</div>
+                            <div class="et-hint">Scan your messages for memorable content — hobbies, people, favorites,
+                                shared moments — and highlight it. Click any highlight to save it as a memory.</div>
                             <div class="et-mem-hl-picker-wrap" id="et_memory_hl_picker_panel_wrap">
                                 <div class="et-label-text-sub"><i class="fa-solid fa-palette"></i> Highlight Style</div>
                                 <div class="et-mem-hl-style-btns" id="et_memory_hl_picker_panel">
-                                    <button class="et-mem-hl-btn" data-hl="underline" type="button"><span class="et-mem-hl-preview et-mem-hl-underline">Aa</span><span>Dotted Underline</span></button>
-                                    <button class="et-mem-hl-btn" data-hl="glow" type="button"><span class="et-mem-hl-preview et-mem-hl-glow">Aa</span><span>Soft Glow</span></button>
-                                    <button class="et-mem-hl-btn" data-hl="shimmer" type="button"><span class="et-mem-hl-preview et-mem-hl-shimmer">Aa</span><span>Shimmer</span></button>
-                                    <button class="et-mem-hl-btn" data-hl="border" type="button"><span class="et-mem-hl-preview et-mem-hl-border">Aa</span><span>Accent Bar</span></button>
+                                    <button class="et-mem-hl-btn" data-hl="underline" type="button"><span
+                                            class="et-mem-hl-preview et-mem-hl-underline">Aa</span><span>Dotted
+                                            Underline</span></button>
+                                    <button class="et-mem-hl-btn" data-hl="glow" type="button"><span
+                                            class="et-mem-hl-preview et-mem-hl-glow">Aa</span><span>Soft
+                                            Glow</span></button>
+                                    <button class="et-mem-hl-btn" data-hl="shimmer" type="button"><span
+                                            class="et-mem-hl-preview et-mem-hl-shimmer">Aa</span><span>Shimmer</span></button>
+                                    <button class="et-mem-hl-btn" data-hl="border" type="button"><span
+                                            class="et-mem-hl-preview et-mem-hl-border">Aa</span><span>Accent
+                                            Bar</span></button>
                                 </div>
                             </div>
                         </div>
@@ -644,13 +700,15 @@
                                     <i class="fa-solid fa-globe"></i> Global
                                 </button>
                             </div>
-                            <div class="et-hint" id="et_memory_scope_hint_panel">Each character keeps their own separate memory pool.</div>
+                            <div class="et-hint" id="et_memory_scope_hint_panel">Each character keeps their own separate
+                                memory pool.</div>
                         </div>
 
                         <div class="et-field">
                             <div class="et-mem-list-header">
                                 <span class="et-mem-list-title" id="et_memory_list_label_panel">Memories</span>
-                                <button class="et-mem-add-btn" id="et_memory_add_btn_panel" type="button" title="Add a new memory">
+                                <button class="et-mem-add-btn" id="et_memory_add_btn_panel" type="button"
+                                    title="Add a new memory">
                                     <i class="fa-solid fa-plus"></i> Add Memory
                                 </button>
                             </div>
@@ -666,16 +724,21 @@
                                         <option value="shared_moment">Shared Moment</option>
                                         <option value="custom">Custom</option>
                                     </select>
-                                    <input type="text" class="et-input-text et-mem-form-label" id="et_memory_form_label_panel" placeholder="Label (e.g. &ldquo;Our song&rdquo;)">
+                                    <input type="text" class="et-input-text et-mem-form-label"
+                                        id="et_memory_form_label_panel"
+                                        placeholder="Label (e.g. &ldquo;Our song&rdquo;)">
                                 </div>
-                                <textarea class="et-mem-form-content" id="et_memory_form_content_panel" rows="3" placeholder="Describe the memory…"></textarea>
+                                <textarea class="et-mem-form-content" id="et_memory_form_content_panel" rows="3"
+                                    placeholder="Describe the memory…"></textarea>
                                 <div class="et-mem-form-actions">
                                     <label class="et-mem-form-pin-row">
                                         <input type="checkbox" id="et_memory_form_pin_panel" class="checkbox">
                                         <span><i class="fa-solid fa-thumbtack"></i> Always inject</span>
                                     </label>
-                                    <button class="et-mem-form-save" id="et_memory_form_save_panel" type="button">Save</button>
-                                    <button class="et-mem-form-cancel" id="et_memory_form_cancel_panel" type="button">Cancel</button>
+                                    <button class="et-mem-form-save" id="et_memory_form_save_panel"
+                                        type="button">Save</button>
+                                    <button class="et-mem-form-cancel" id="et_memory_form_cancel_panel"
+                                        type="button">Cancel</button>
                                 </div>
                             </div>
 
@@ -684,7 +747,8 @@
                                 <!-- Populated by JS -->
                             </div>
                             <div class="et-mem-empty" id="et_memory_empty_panel" style="display:none;">
-                                <i class="fa-solid fa-box-open"></i><br>No memories yet.<br>Start chatting or add one manually.
+                                <i class="fa-solid fa-box-open"></i><br>No memories yet.<br>Start chatting or add one
+                                manually.
                             </div>
                         </div>
 
@@ -705,7 +769,8 @@
                     </div>
                     <div class="et-accordion-content">
                         <div class="et-hint" style="margin-bottom:16px;">Use SillyTavern's Image Generation plugin so
-                            characters can respond to natural image requests with generated pictures inside EchoText.</div>
+                            characters can respond to natural image requests with generated pictures inside EchoText.
+                        </div>
 
                         <div class="et-field">
                             <label class="et-toggle-row" for="et_image_generation_enabled_panel">
@@ -725,7 +790,7 @@
                                 <li>Enable the <strong>Image Generation</strong> extension in
                                     SillyTavern</li>
                                 <li>Configure it with a working image source <span
-                                        class="et-imagegen-setup-note">(ComfyUI, Gemini, etc.)</span></li> 
+                                        class="et-imagegen-setup-note">(ComfyUI, Gemini, etc.)</span></li>
                             </ol>
                         </div>
 
@@ -834,7 +899,7 @@
 
                                 <div class="et-imagetrig-group">
                                     <div class="et-imagetrig-group-label">
-                                        <i class="fa-solid fa-arrows-spin"></i> Context References 
+                                        <i class="fa-solid fa-arrows-spin"></i> Context References
                                     </div>
                                     <span class="et-imagetrig-group-note">(AI resolves from conversation)</span>
                                     <div class="et-imagetrig-pills">
@@ -854,7 +919,8 @@
                                             data-copy="Show me that look" title="Click to copy">Show me that
                                             look</span>
                                         <span class="et-imagetrig-pill et-imagetrig-pill-copyable"
-                                            data-copy="Send me a photo of how you look right now" title="Click to copy" style="text-wrap: auto;">Send me a photo of how you look right now</span>
+                                            data-copy="Send me a photo of how you look right now" title="Click to copy"
+                                            style="text-wrap: auto;">Send me a photo of how you look right now</span>
                                     </div>
                                 </div>
 
@@ -913,17 +979,19 @@
                                         <span class="et-imagetrig-pill et-imagetrig-pill-copyable"
                                             data-copy="Show me a render" title="Click to copy">Show me a render</span>
                                         <span class="et-imagetrig-pill et-imagetrig-pill-copyable"
-                                            data-copy="Show me some hentai" title="Click to copy">Show me some hentai</span>
+                                            data-copy="Show me some hentai" title="Click to copy">Show me some
+                                            hentai</span>
                                         <span class="et-imagetrig-pill et-imagetrig-pill-copyable"
                                             data-copy="Got any artwork?" title="Click to copy">Got any artwork?</span>
                                         <span class="et-imagetrig-pill et-imagetrig-pill-copyable"
-                                            data-copy="Generate an illustration" title="Click to copy">Generate an illustration</span>
+                                            data-copy="Generate an illustration" title="Click to copy">Generate an
+                                            illustration</span>
                                     </div>
                                 </div>
 
                                 <div class="et-imagetrig-group">
                                     <div class="et-imagetrig-group-label">
-                                        <i class="fa-solid fa-reply"></i> Affirmative Reply 
+                                        <i class="fa-solid fa-reply"></i> Affirmative Reply
                                     </div>
                                     <span class="et-imagetrig-group-note">(after character offers a photo)</span>
                                     <div class="et-imagetrig-pills">
@@ -958,7 +1026,9 @@
 
                                 <p class="et-imagetrig-tip">
                                     <i class="fa-solid fa-fire"></i>
-                                    <strong>Style Modifiers:</strong> Words like <em>hentai, nsfw, ecchi, lewd,</em> or <em>manga</em> will automatically force explicit or anime style tags into the underlying Stable Diffusion prompt.
+                                    <strong>Style Modifiers:</strong> Words like <em>hentai, nsfw, ecchi, lewd,</em> or
+                                    <em>manga</em> will automatically force explicit or anime style tags into the
+                                    underlying Stable Diffusion prompt.
                                 </p>
 
                             </div>

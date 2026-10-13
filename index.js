@@ -157,7 +157,7 @@
             // Max z-index, fixed fullscreen, tracking dynamic viewport (dvh/dvw)
             // We use color:initial and text-align:initial to ensureST defaults don't bleed in.
             portal.style.cssText = `position:fixed; top:0; left:0; width:100dvw; height:100dvh; z-index:${isMobileDevice() ? '2147483647' : '1500'}; pointer-events:none; display:block !important; border:none !important; margin:0 !important; padding:0 !important;`;
-            
+
             // Try appending to html first to escape body bugs
             try {
                 document.documentElement.appendChild(portal);
@@ -372,12 +372,12 @@
      *  'expressive' uses 30 min so the trigger/jitter system is the real governor.
      */
     const ACTIVITY_MODE_PRESETS = {
-        quiet:      { minutes: 480, hint: 'Quiet: ~1–2 messages per day. Minimal API use — ideal when watching token spend.' },
-        relaxed:    { minutes: 300, hint: 'Relaxed: ~3 messages per day. A gentle presence that doesn\'t intrude.' },
-        natural:    { minutes: 180, hint: 'Natural: Dynamic, emotion-influenced frequency. The default — feels organic without overwhelming.' },
-        lively:     { minutes:  90, hint: 'Lively: ~6–8 messages per day. The character reaches out more readily, especially when emotionally engaged.' },
-        expressive: { minutes:  30, hint: 'Expressive: Minimal floor — the trigger system drives everything. Best with a fast or local model.' },
-        custom:     { minutes: null, hint: 'Custom: Use the slider to set your own minimum gap between messages.' }
+        quiet: { minutes: 480, hint: 'Quiet: ~1–2 messages per day. Minimal API use — ideal when watching token spend.' },
+        relaxed: { minutes: 300, hint: 'Relaxed: ~3 messages per day. A gentle presence that doesn\'t intrude.' },
+        natural: { minutes: 180, hint: 'Natural: Dynamic, emotion-influenced frequency. The default — feels organic without overwhelming.' },
+        lively: { minutes: 90, hint: 'Lively: ~6–8 messages per day. The character reaches out more readily, especially when emotionally engaged.' },
+        expressive: { minutes: 30, hint: 'Expressive: Minimal floor — the trigger system drives everything. Best with a fast or local model.' },
+        custom: { minutes: null, hint: 'Custom: Use the slider to set your own minimum gap between messages.' }
     };
 
     /**
@@ -679,9 +679,9 @@
         if (!contextOverride) return;
         const ov = contextOverride.getOverridesForCurrentChar();
         let count = 0;
-        if (ov.description   && ov.description.trim())   count++;
-        if (ov.personality   && ov.personality.trim())   count++;
-        if (ov.scenario      && ov.scenario.trim())      count++;
+        if (ov.description && ov.description.trim()) count++;
+        if (ov.personality && ov.personality.trim()) count++;
+        if (ov.scenario && ov.scenario.trim()) count++;
         if (ov.textingStyleValue && ov.textingStyleValue.trim()) count++;
         const badge = jQuery('#et-overflow-ctx-badge');
         if (count > 0) {
@@ -1272,7 +1272,7 @@
             navigator.clipboard.writeText(text).then(() => {
                 pill.addClass('et-imagetrig-pill-copied');
                 setTimeout(() => pill.removeClass('et-imagetrig-pill-copied'), 1400);
-            }).catch(() => {});
+            }).catch(() => { });
         });
 
         // iOS: patch panel sliders for touch. Called here — after the panel
@@ -1353,14 +1353,14 @@
     // Handles the values that cannot be expressed as pure CSS var() references
     // (e.g. RGB triplets, derived alpha variants).
     function applySillyTavernThemeColors() {
-        const cs  = getComputedStyle(document.documentElement);
+        const cs = getComputedStyle(document.documentElement);
         const root = document.documentElement;
 
         // ── Panel glass background ──────────────────────────────────────────
         // --SmartThemeBlurTintColor is ST's "UI Background" tint.  We extract
         // its R/G/B so that --et-panel-bg-rgb can feed rgba(r,g,b,opacity).
         const blurTint = cs.getPropertyValue('--SmartThemeBlurTintColor').trim();
-        const blurRgb  = extractRgbComponents(blurTint);
+        const blurRgb = extractRgbComponents(blurTint);
         if (blurRgb) {
             root.style.setProperty('--et-panel-bg-rgb', `${blurRgb.r}, ${blurRgb.g}, ${blurRgb.b}`);
         } else {
@@ -1381,7 +1381,7 @@
         // --SmartThemeBotMesBlurTintColor is ST's "AI Message" tint.
         // We use a moderate alpha so it stays translucent on the glass panel.
         const botTint = cs.getPropertyValue('--SmartThemeBotMesBlurTintColor').trim();
-        const botRgb  = extractRgbComponents(botTint);
+        const botRgb = extractRgbComponents(botTint);
         if (botRgb) {
             root.style.setProperty('--et-char-bubble-bg', `rgba(${botRgb.r}, ${botRgb.g}, ${botRgb.b}, 0.55)`);
         } else {
@@ -1681,18 +1681,18 @@
         };
 
         const commStyleIcons = {
-            formal:     { icon: 'fa-solid fa-file-pen',              color: '#60a5fa', label: 'Formal' },
-            casual:     { icon: 'fa-solid fa-comment',               color: '#4ade80', label: 'Casual' },
-            vintage:    { icon: 'fa-solid fa-feather-pointed',       color: '#fbbf24', label: 'Vintage' },
-            tech_savvy: { icon: 'fa-solid fa-microchip',             color: '#38bdf8', label: 'Tech-Savvy' },
-            poetic:     { icon: 'fa-solid fa-pen-nib',               color: '#c084fc', label: 'Poetic' },
-            direct:     { icon: 'fa-solid fa-arrow-right',           color: '#f87171', label: 'Direct' },
-            passive:    { icon: 'fa-solid fa-ellipsis',              color: '#94a3b8', label: 'Passive' },
-            aggressive: { icon: 'fa-solid fa-bullhorn',              color: '#fb923c', label: 'Aggressive' },
-            banter:     { icon: 'fa-solid fa-comments',              color: '#fb923c', label: 'Banter' },
-            theatrical: { icon: 'fa-solid fa-masks-theater',         color: '#f472b6', label: 'Theatrical' },
-            cryptic:    { icon: 'fa-solid fa-eye-slash',             color: '#818cf8', label: 'Cryptic' },
-            nurturing:  { icon: 'fa-solid fa-hand-holding-heart',    color: '#34d399', label: 'Nurturing' },
+            formal: { icon: 'fa-solid fa-file-pen', color: '#60a5fa', label: 'Formal' },
+            casual: { icon: 'fa-solid fa-comment', color: '#4ade80', label: 'Casual' },
+            vintage: { icon: 'fa-solid fa-feather-pointed', color: '#fbbf24', label: 'Vintage' },
+            tech_savvy: { icon: 'fa-solid fa-microchip', color: '#38bdf8', label: 'Tech-Savvy' },
+            poetic: { icon: 'fa-solid fa-pen-nib', color: '#c084fc', label: 'Poetic' },
+            direct: { icon: 'fa-solid fa-arrow-right', color: '#f87171', label: 'Direct' },
+            passive: { icon: 'fa-solid fa-ellipsis', color: '#94a3b8', label: 'Passive' },
+            aggressive: { icon: 'fa-solid fa-bullhorn', color: '#fb923c', label: 'Aggressive' },
+            banter: { icon: 'fa-solid fa-comments', color: '#fb923c', label: 'Banter' },
+            theatrical: { icon: 'fa-solid fa-masks-theater', color: '#f472b6', label: 'Theatrical' },
+            cryptic: { icon: 'fa-solid fa-eye-slash', color: '#818cf8', label: 'Cryptic' },
+            nurturing: { icon: 'fa-solid fa-hand-holding-heart', color: '#34d399', label: 'Nurturing' },
         };
 
         const parts = [];
@@ -1943,8 +1943,8 @@
      * @returns {{ apiMessages, rawPrompt, systemPrompt }}
      */
     async function buildCombinedGroupApiMessages(history, char) {
-        const charName  = char?.name || 'Character';
-        const userName  = getUserName();
+        const charName = char?.name || 'Character';
+        const userName = getUserName();
         const allHistory = Array.isArray(history) ? history : [];
 
         // ── 1. Shared system prompt (group scene + anti-refusal) ─────────────
@@ -1987,10 +1987,10 @@
 
         // Character card — wrapped in XML so models treat it as reference data, not output
         const charDescription = (char?.description || char?.data?.description || '').trim();
-        const charPersonality  = (char?.personality  || char?.data?.personality  || '').trim();
+        const charPersonality = (char?.personality || char?.data?.personality || '').trim();
         const charCardParts = [];
         if (settings.ctxDescription !== false && charDescription) charCardParts.push(`${charName}'s description: ${expandTimeDateMacros(replaceMacros(charDescription))}`);
-        if (settings.ctxPersonality !== false && charPersonality)  charCardParts.push(`${charName}'s personality: ${expandTimeDateMacros(replaceMacros(charPersonality))}`);  
+        if (settings.ctxPersonality !== false && charPersonality) charCardParts.push(`${charName}'s personality: ${expandTimeDateMacros(replaceMacros(charPersonality))}`);
         if (charCardParts.length > 0) finalUserParts.push(`<character_reference>\n${charCardParts.join('\n\n')}\n</character_reference>`);
 
         // Generation cue (user-editable via Prompt Manager — supports {{char}} macro)
@@ -2124,15 +2124,15 @@
         // ── 2. CHARACTER KNOWLEDGE ───────────────────────────────────────────────
         // Support both V1 (top-level fields) and V2 (nested under char.data) card formats
         const charDescription = char.description || char.data?.description || '';
-        const charPersonality  = char.personality  || char.data?.personality  || '';
-        const charScenario     = char.scenario      || char.data?.scenario      || '';
+        const charPersonality = char.personality || char.data?.personality || '';
+        const charScenario = char.scenario || char.data?.scenario || '';
 
         // Apply per-character context overrides (from the Context modal).
         // Overrides are Untethered-only — in Tethered mode the ST card fields are used as-is.
         const _ctxOv = (!tethered && contextOverride) ? contextOverride.getOverridesForCurrentChar() : {};
         const effectiveDescription = (_ctxOv.description && _ctxOv.description.trim()) ? _ctxOv.description.trim() : charDescription;
-        const effectivePersonality  = (_ctxOv.personality  && _ctxOv.personality.trim())  ? _ctxOv.personality.trim()  : charPersonality;
-        const effectiveScenario     = (_ctxOv.scenario      && _ctxOv.scenario.trim())      ? _ctxOv.scenario.trim()      : charScenario;
+        const effectivePersonality = (_ctxOv.personality && _ctxOv.personality.trim()) ? _ctxOv.personality.trim() : charPersonality;
+        const effectiveScenario = (_ctxOv.scenario && _ctxOv.scenario.trim()) ? _ctxOv.scenario.trim() : charScenario;
 
         // Character card fields — wrapped in <character_reference> XML tags so models
         // treat them as scoped reference data rather than content to reproduce.
@@ -2144,7 +2144,7 @@
             charRefParts.push(`${name}'s personality: ${expandTimeDateMacros(replaceMacros(effectivePersonality))}`);
         }
         if (settings.ctxScenario !== false && effectiveScenario) {
-            charRefParts.push(`Scenario: ${expandTimeDateMacros(replaceMacros(effectiveScenario))}`);  
+            charRefParts.push(`Scenario: ${expandTimeDateMacros(replaceMacros(effectiveScenario))}`);
         }
         if (tethered && settings.ctxWorldInfo === true) {
             try {
@@ -2159,9 +2159,9 @@
             if (_wiOv.wiOverrideEnabled === true) {
                 try {
                     const worldInfoData = await getActiveWorldInfoEntries({
-                        mode:           _wiOv.wiMode || 'min_order',
-                        minOrder:       typeof _wiOv.wiMinOrder === 'number' ? _wiOv.wiMinOrder : 250,
-                        maxOrder:       typeof _wiOv.wiMaxOrder === 'number' ? _wiOv.wiMaxOrder : null,
+                        mode: _wiOv.wiMode || 'min_order',
+                        minOrder: typeof _wiOv.wiMinOrder === 'number' ? _wiOv.wiMinOrder : 250,
+                        maxOrder: typeof _wiOv.wiMaxOrder === 'number' ? _wiOv.wiMaxOrder : null,
                         targetedOrders: Array.isArray(_wiOv.wiTargetedOrders) ? _wiOv.wiTargetedOrders : [],
                     });
                     if (worldInfoData) {
@@ -2279,11 +2279,11 @@
 
             // Filter entries based on the configured mode.
             // Per-character overrides (opts) take precedence over global settings.
-            const mode           = (opts && opts.mode) || settings.ctxWorldInfoMode || 'min_order';
-            const minOrder       = (opts && typeof opts.minOrder === 'number') ? opts.minOrder
-                                   : (typeof settings.ctxWorldInfoMinOrder === 'number' ? settings.ctxWorldInfoMinOrder : 250);
-            const maxOrder       = (opts && 'maxOrder' in opts) ? opts.maxOrder
-                                   : (typeof settings.ctxWorldInfoMaxOrder === 'number' ? settings.ctxWorldInfoMaxOrder : null);
+            const mode = (opts && opts.mode) || settings.ctxWorldInfoMode || 'min_order';
+            const minOrder = (opts && typeof opts.minOrder === 'number') ? opts.minOrder
+                : (typeof settings.ctxWorldInfoMinOrder === 'number' ? settings.ctxWorldInfoMinOrder : 250);
+            const maxOrder = (opts && 'maxOrder' in opts) ? opts.maxOrder
+                : (typeof settings.ctxWorldInfoMaxOrder === 'number' ? settings.ctxWorldInfoMaxOrder : null);
             const targetedOrders = (opts && Array.isArray(opts.targetedOrders))
                 ? opts.targetedOrders.map(Number).filter(function (n) { return !isNaN(n); })
                 : (Array.isArray(settings.ctxWorldInfoTargetedOrders)
@@ -2919,7 +2919,7 @@
             }
 
             await sleepWithAbort(timing.typingLeadMs, abortController.signal);
-            
+
             const bypassTextGeneration = (imageGeneration && latestUserMessage?.is_user && pendingImageDetection?.triggered && settings.imageGenerationIncludeTextReply === false);
 
             if (!bypassTextGeneration) {
@@ -2943,7 +2943,7 @@
             const hasTextResponse = result && result.trim();
             if (hasTextResponse || imageReply?.triggered) {
                 const trimmedResult = hasTextResponse ? cleanGeneratedResponse(result) : '';
-                
+
                 if (hasTextResponse) {
                     // Process character's response for emotion analysis
                     processMessageEmotion(trimmedResult, false);
@@ -3114,12 +3114,12 @@
         }
 
         const swipeCount = msg.swipes ? msg.swipes.length : 1;
-        const swipeIdx   = msg.swipeIndex ?? 0;
+        const swipeIdx = msg.swipeIndex ?? 0;
         const swipeIsLast = swipeIdx >= swipeCount - 1;
 
         // ── Scroll anchor: snapshot before DOM changes ────────────────────
         const messagesEl = document.getElementById('et-messages');
-        const scrollTopBefore    = messagesEl ? messagesEl.scrollTop    : 0;
+        const scrollTopBefore = messagesEl ? messagesEl.scrollTop : 0;
         const scrollHeightBefore = messagesEl ? messagesEl.scrollHeight : 0;
 
         // ── DOM changes ───────────────────────────────────────────────────
@@ -3129,7 +3129,7 @@
 
         // Update image attachment in-place
         const existingImg = msgEl.find('.et-image-attachment');
-        const newImgHtml  = buildImageAttachmentHtml(msg, msgIndex);
+        const newImgHtml = buildImageAttachmentHtml(msg, msgIndex);
         if (newImgHtml) {
             if (existingImg.length) {
                 existingImg.replaceWith(newImgHtml);
@@ -3139,12 +3139,12 @@
             msgEl.find('.et-image-attachment-ready').off('click.swipeimg').on('click.swipeimg', function (e) {
                 e.stopPropagation();
                 const idx = parseInt(jQuery(this).data('image-index'), 10);
-                const m   = h[idx];
+                const m = h[idx];
                 const navItems = h
                     .filter(x => x?.imageAttachment?.url)
                     .map(x => ({ url: x.imageAttachment.url, prompt: x.imageAttachment.prompt || '' }));
                 const currentUrl = m?.imageAttachment?.url || '';
-                const navIndex   = navItems.findIndex(x => x.url === currentUrl);
+                const navIndex = navItems.findIndex(x => x.url === currentUrl);
                 openGeneratedImageLightbox(currentUrl, m?.imageAttachment?.prompt || '',
                     { navItems, navIndex: navIndex >= 0 ? navIndex : 0 });
             });
@@ -3157,8 +3157,8 @@
         msgEl.find('.et-swipe-prev').prop('disabled', swipeIdx === 0);
         const nextBtn = msgEl.find('.et-swipe-next');
         nextBtn.toggleClass('et-swipe-regen', swipeIsLast)
-               .attr('title', swipeIsLast ? 'Regenerate (new version)' : 'Next version')
-               .prop('disabled', false);
+            .attr('title', swipeIsLast ? 'Regenerate (new version)' : 'Next version')
+            .prop('disabled', false);
 
         // ── Scroll anchor: compensate for height delta ────────────────────
         // Any height change in the message shifts scrollHeight by the same amount.
@@ -3348,7 +3348,7 @@
         if (!bubble) return;
 
         const AXIS_LOCK_PX = 8;   // min movement before axis is committed
-        const COMMIT_PX    = 55;  // min drag to trigger a swipe action
+        const COMMIT_PX = 55;  // min drag to trigger a swipe action
 
         let startX = 0, startY = 0, currentDx = 0;
         let isTracking = false;  // horizontal gesture confirmed
@@ -3356,14 +3356,14 @@
 
         function clearStyles() {
             bubble.style.transition = '';
-            bubble.style.transform  = '';
-            bubble.style.opacity    = '';
+            bubble.style.transform = '';
+            bubble.style.opacity = '';
         }
 
         function snapBack() {
             bubble.style.transition = 'transform 0.30s cubic-bezier(0.34,1.56,0.64,1), opacity 0.20s ease-out';
-            bubble.style.transform  = '';
-            bubble.style.opacity    = '';
+            bubble.style.transform = '';
+            bubble.style.opacity = '';
             setTimeout(clearStyles, 330);
         }
 
@@ -3371,21 +3371,21 @@
             // Tiny overshoot in the blocked direction signals "nothing here"
             const rebound = dx < 0 ? 10 : -10;
             bubble.style.transition = 'transform 0.10s ease-out';
-            bubble.style.transform  = `translateX(${rebound}px)`;
+            bubble.style.transform = `translateX(${rebound}px)`;
             setTimeout(snapBack, 110);
         }
 
         function doCommit(direction) {
-            const exitX  = direction === 'next' ? -(bubble.offsetWidth * 0.55) : (bubble.offsetWidth * 0.55);
+            const exitX = direction === 'next' ? -(bubble.offsetWidth * 0.55) : (bubble.offsetWidth * 0.55);
             const enterX = -exitX;
 
             // ── Phase 1: slide out ─────────────────────────────────────────
             bubble.style.transition = 'transform 0.17s ease-in, opacity 0.17s ease-in';
-            bubble.style.transform  = `translateX(${exitX}px)`;
-            bubble.style.opacity    = '0';
+            bubble.style.transform = `translateX(${exitX}px)`;
+            bubble.style.opacity = '0';
 
             setTimeout(() => {
-                const h   = getChatHistory();
+                const h = getChatHistory();
                 const msg = h[msgIndex];
                 if (!msg) { clearStyles(); return; }
 
@@ -3411,8 +3411,8 @@
 
                 // ── Phase 2: place at enter-from side (invisible) ──────────
                 bubble.style.transition = 'none';
-                bubble.style.transform  = `translateX(${enterX}px)`;
-                bubble.style.opacity    = '0';
+                bubble.style.transform = `translateX(${enterX}px)`;
+                bubble.style.opacity = '0';
 
                 // Update text/counter/buttons while the bubble is off-screen
                 updateSwipeInPlace(msgIndex, h);
@@ -3420,8 +3420,8 @@
                 // ── Phase 3: animate in ────────────────────────────────────
                 void bubble.offsetHeight; // force reflow
                 bubble.style.transition = 'transform 0.24s cubic-bezier(0.22,1,0.36,1), opacity 0.18s ease-out';
-                bubble.style.transform  = '';
-                bubble.style.opacity    = '';
+                bubble.style.transform = '';
+                bubble.style.opacity = '';
                 setTimeout(clearStyles, 270);
             }, 185);
         }
@@ -3431,15 +3431,15 @@
             const t = e.touches[0];
             startX = t.clientX;
             startY = t.clientY;
-            currentDx   = 0;
-            isTracking  = false;
-            isRejected  = false;
+            currentDx = 0;
+            isTracking = false;
+            isRejected = false;
             bubble.style.transition = 'none';
         }, { passive: true });
 
         bubble.addEventListener('touchmove', (e) => {
             if (isRejected || e.touches.length !== 1) return;
-            const t  = e.touches[0];
+            const t = e.touches[0];
             const dx = t.clientX - startX;
             const dy = t.clientY - startY;
 
@@ -3454,7 +3454,7 @@
             currentDx = dx;
 
             // Rubber-band when swiping past the first swipe
-            const h   = getChatHistory();
+            const h = getChatHistory();
             const msg = h[msgIndex];
             let effectiveDx = dx;
             if (msg && dx > 0 && (msg.swipeIndex ?? 0) === 0) {
@@ -3463,13 +3463,13 @@
 
             const progress = Math.min(Math.abs(effectiveDx) / 180, 1);
             bubble.style.transform = `translateX(${effectiveDx}px)`;
-            bubble.style.opacity   = String(1 - progress * 0.30);
+            bubble.style.opacity = String(1 - progress * 0.30);
         }, { passive: false });
 
         bubble.addEventListener('touchend', () => {
             if (!isTracking) { bubble.style.transition = ''; return; }
-            const dx  = currentDx;
-            const h   = getChatHistory();
+            const dx = currentDx;
+            const h = getChatHistory();
             const msg = h[msgIndex];
 
             if (Math.abs(dx) >= COMMIT_PX) {
@@ -3535,8 +3535,8 @@
      * @returns {{ apiMessages, rawPrompt, systemPrompt }}
      */
     async function buildManualNudgeApiMessages(history, char, stanceHint) {
-        const charName  = char?.name || 'Character';
-        const userName  = getUserName();
+        const charName = char?.name || 'Character';
+        const userName = getUserName();
         const allHistory = Array.isArray(history) ? history : [];
 
         // ── 1. Shared system prompt ───────────────────────────────────────────
@@ -3569,10 +3569,10 @@
 
         // Character card — wrapped in XML so models treat it as reference data, not output
         const charDescription = (char?.description || char?.data?.description || '').trim();
-        const charPersonality  = (char?.personality  || char?.data?.personality  || '').trim();
+        const charPersonality = (char?.personality || char?.data?.personality || '').trim();
         const charCardParts = [];
         if (charDescription) charCardParts.push(`${charName}'s description: ${expandTimeDateMacros(replaceMacros(charDescription))}`);
-        if (charPersonality)  charCardParts.push(`${charName}'s personality: ${expandTimeDateMacros(replaceMacros(charPersonality))}`);
+        if (charPersonality) charCardParts.push(`${charName}'s personality: ${expandTimeDateMacros(replaceMacros(charPersonality))}`);
         if (charCardParts.length > 0) finalUserParts.push(`<character_reference>\n${charCardParts.join('\n\n')}\n</character_reference>`);
 
         const charKey = char?.avatar || char?.name || '';
@@ -3984,7 +3984,7 @@
                     const messagesEl = document.getElementById('et-messages');
                     if (messagesEl) {
                         messagesEl.scrollTop = messagesEl.scrollHeight;
-                        inner.find('#et-typing-indicator-msg img').on('load', function() {
+                        inner.find('#et-typing-indicator-msg img').on('load', function () {
                             if (settings.autoScroll) {
                                 messagesEl.scrollTop = messagesEl.scrollHeight;
                             }
@@ -4035,7 +4035,7 @@
                     const messagesEl = document.getElementById('et-messages');
                     if (messagesEl) {
                         messagesEl.scrollTop = messagesEl.scrollHeight;
-                        inner.find('#et-image-gen-indicator-msg img').on('load', function() {
+                        inner.find('#et-image-gen-indicator-msg img').on('load', function () {
                             if (settings.autoScroll) {
                                 messagesEl.scrollTop = messagesEl.scrollHeight;
                             }
@@ -4222,7 +4222,7 @@
         // Free-floating position (not snapped to any edge).
         if (settings.fabFreeX != null && settings.fabFreeY != null) {
             const left = Math.max(margin, Math.min(vw - size - margin, (settings.fabFreeX / 100) * vw));
-            const top  = Math.max(margin, Math.min(vh - size - margin, (settings.fabFreeY / 100) * vh));
+            const top = Math.max(margin, Math.min(vh - size - margin, (settings.fabFreeY / 100) * vh));
             fab.css({ left: left + 'px', top: top + 'px', right: '', bottom: '' });
             return;
         }
@@ -4232,7 +4232,7 @@
         // We run the same edge-snap logic as desktop but with a larger margin that
         // clears the iOS home indicator and notch safe areas.
         const edge = settings.fabEdge || 'right';
-        const pos  = settings.fabPosition != null ? settings.fabPosition : 80;
+        const pos = settings.fabPosition != null ? settings.fabPosition : 80;
 
         if (edge === 'right') {
             const top = Math.max(margin, Math.min(vh - size - margin, (pos / 100) * vh));
@@ -4344,15 +4344,15 @@
         // edge in that axis.  Outside that zone the button floats freely wherever
         // the user dropped it.
         const SNAP_ZONE = 0.07;
-        const nearLeft   = cx < SNAP_ZONE * vw;
-        const nearRight  = cx > (1 - SNAP_ZONE) * vw;
-        const nearTop    = cy < SNAP_ZONE * vh;
+        const nearLeft = cx < SNAP_ZONE * vw;
+        const nearRight = cx > (1 - SNAP_ZONE) * vw;
+        const nearTop = cy < SNAP_ZONE * vh;
         const nearBottom = cy > (1 - SNAP_ZONE) * vh;
 
         if (!nearLeft && !nearRight && !nearTop && !nearBottom) {
             // Free-float: store position as % of viewport so it survives resizes.
             settings.fabFreeX = Math.round(((rect.left) / vw) * 100 * 10) / 10;
-            settings.fabFreeY = Math.round(((rect.top)  / vh) * 100 * 10) / 10;
+            settings.fabFreeY = Math.round(((rect.top) / vh) * 100 * 10) / 10;
             // Clear any previously saved edge state.
             settings.fabEdge = null;
             settings.fabPosition = null;
@@ -4366,17 +4366,17 @@
         settings.fabFreeX = null;
         settings.fabFreeY = null;
 
-        const distLeft   = cx;
-        const distRight  = vw - cx;
-        const distTop    = cy;
+        const distLeft = cx;
+        const distRight = vw - cx;
+        const distTop = cy;
         const distBottom = vh - cy;
         const minDist = Math.min(distLeft, distRight, distTop, distBottom);
 
         let edge, pos;
-        if (minDist === distRight)       { edge = 'right';  pos = Math.round((cy / vh) * 100); }
-        else if (minDist === distLeft)   { edge = 'left';   pos = Math.round((cy / vh) * 100); }
+        if (minDist === distRight) { edge = 'right'; pos = Math.round((cy / vh) * 100); }
+        else if (minDist === distLeft) { edge = 'left'; pos = Math.round((cy / vh) * 100); }
         else if (minDist === distBottom) { edge = 'bottom'; pos = Math.round((cx / vw) * 100); }
-        else                             { edge = 'top';    pos = Math.round((cx / vw) * 100); }
+        else { edge = 'top'; pos = Math.round((cx / vw) * 100); }
 
         settings.fabEdge = edge;
         settings.fabPosition = pos;
@@ -4485,8 +4485,8 @@
                 const isNearBlack = brightness <= 15;
                 const TOL = 12;
                 const isGreyPurple = Math.abs(px[0] - 149) <= TOL &&
-                                     Math.abs(px[1] - 127) <= TOL &&
-                                     Math.abs(px[2] - 143) <= TOL;
+                    Math.abs(px[1] - 127) <= TOL &&
+                    Math.abs(px[2] - 143) <= TOL;
                 if (isNearBlack || isGreyPurple) img.remove();
             } catch (_e) { /* cross-origin — keep the image */ }
         }
@@ -5003,7 +5003,7 @@
                 const onVVResize = () => {
                     if (!panelOpen) return;
                     panelEl.style.height = window.visualViewport.height + 'px';
-                    panelEl.style.top    = window.visualViewport.offsetTop  + 'px';
+                    panelEl.style.top = window.visualViewport.offsetTop + 'px';
                 };
                 window.visualViewport.addEventListener('resize', onVVResize);
                 window.visualViewport.addEventListener('scroll', onVVResize);
@@ -5319,8 +5319,8 @@
         // The character has "read" the message (readDelayMs) and then takes an
         // additional moment (1200–4500ms) before tapping react — just like iMessage.
         const timing = getEmotionReplyTimingModel();
-        const baseDelay  = timing.readDelayMs;
-        const jitterMs   = Math.round(1200 + Math.random() * 3300);
+        const baseDelay = timing.readDelayMs;
+        const jitterMs = Math.round(1200 + Math.random() * 3300);
         const totalDelay = baseDelay + jitterMs;
 
         setTimeout(() => {
@@ -5526,7 +5526,7 @@
 
         // Read persisted accordion state (default: open)
         let promptOpen = true;
-        try { promptOpen = localStorage.getItem('et_lightbox_prompt_open') !== 'false'; } catch (e) {}
+        try { promptOpen = localStorage.getItem('et_lightbox_prompt_open') !== 'false'; } catch (e) { }
 
         const safePrompt = String(promptText || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
         const safeTitle = titleText ? String(titleText).replace(/</g, '&lt;').replace(/>/g, '&gt;') : '';
@@ -5590,8 +5590,8 @@
             img.addClass('et-lightbox-img-nav-fade');
             setTimeout(() => {
                 img.attr('src', item.url)
-                   .removeClass('et-lightbox-img-nav-fade')
-                   .addClass('et-lightbox-img-nav-in');
+                    .removeClass('et-lightbox-img-nav-fade')
+                    .addClass('et-lightbox-img-nav-in');
                 setTimeout(() => img.removeClass('et-lightbox-img-nav-in'), 300);
 
                 lightbox.find('.et-lightbox-nav-counter').text(`${currentNavIndex + 1} / ${navItems.length}`);
@@ -5634,7 +5634,7 @@
             const isOpen = panel.hasClass('et-lightbox-prompt-open');
             panel.toggleClass('et-lightbox-prompt-open', !isOpen);
             lightbox.find('.et-lightbox-prompt-toggle').attr('title', isOpen ? 'Show prompt' : 'Hide prompt');
-            try { localStorage.setItem('et_lightbox_prompt_open', String(!isOpen)); } catch (e) {}
+            try { localStorage.setItem('et_lightbox_prompt_open', String(!isOpen)); } catch (e) { }
         });
 
         // ── Close helpers ─────────────────────────────────────────────────────
@@ -5678,7 +5678,7 @@
                 const dy = e.changedTouches[0].clientY - touchStartY;
                 if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 45) {
                     if (dx < 0) navigateTo(currentNavIndex + 1); // swipe left → next
-                    else        navigateTo(currentNavIndex - 1); // swipe right → prev
+                    else navigateTo(currentNavIndex - 1); // swipe right → prev
                 }
             }, { passive: true });
         }
@@ -5829,7 +5829,7 @@
 
             // Apply memory highlights to user bubbles
             if (isUser && msg.memoryHighlights && msg.memoryHighlights.length > 0
-                    && settings.memoryEnabled && settings.memoryAutoExtract) {
+                && settings.memoryEnabled && settings.memoryAutoExtract) {
                 try { applyMemoryHighlights(inner.children().last(), msg); } catch (e) { /* ignore */ }
             }
 
@@ -6275,7 +6275,7 @@
                     // We pass historyBefore as the generation context and historyAfter
                     // so the new reply can be stitched back into the correct position.
                     const historyBefore = history.slice(0, msgIndex);
-                    const historyAfter  = history.slice(msgIndex + 1);
+                    const historyAfter = history.slice(msgIndex + 1);
 
                     // Show the gap immediately (target message disappears, others stay)
                     const previewHistory = [...historyBefore, ...historyAfter];
@@ -6685,17 +6685,17 @@
             const idx = node.nodeValue.indexOf(searchStr);
             if (idx === -1) continue;
             const before = node.nodeValue.substring(0, idx);
-            const after  = node.nodeValue.substring(idx + searchStr.length);
-            const mark   = document.createElement('mark');
+            const after = node.nodeValue.substring(idx + searchStr.length);
+            const mark = document.createElement('mark');
             mark.className = `et-mem-highlight et-mem-hl-${style}`;
             mark.dataset.memCategory = category;
-            mark.dataset.memLabel    = label;
-            mark.dataset.memContent  = searchStr;
+            mark.dataset.memLabel = label;
+            mark.dataset.memContent = searchStr;
             mark.textContent = searchStr;
             const parent = node.parentNode;
             if (before) parent.insertBefore(document.createTextNode(before), node);
             parent.insertBefore(mark, node);
-            if (after)  parent.insertBefore(document.createTextNode(after),  node);
+            if (after) parent.insertBefore(document.createTextNode(after), node);
             parent.removeChild(node);
             return true; // first occurrence only
         }
@@ -6708,7 +6708,7 @@
      */
     function applyMemoryHighlights(bubbleEl, msg) {
         if (!bubbleEl || !msg.memoryHighlights || !msg.memoryHighlights.length) return;
-        const style      = (settings.memoryHighlightStyle || 'underline');
+        const style = (settings.memoryHighlightStyle || 'underline');
         const bubbleText = bubbleEl.find('.et-bubble-text')[0];
         if (!bubbleText) return;
         msg.memoryHighlights.forEach(function (hl) {
@@ -6730,12 +6730,12 @@
     }
 
     const _MEM_CATEGORY_LABELS = {
-        inside_joke:    'Inside Joke',
-        person:         'Important Person',
-        hobby:          'Hobby / Interest',
+        inside_joke: 'Inside Joke',
+        person: 'Important Person',
+        hobby: 'Hobby / Interest',
         favorite_thing: 'Favorite Thing',
-        shared_moment:  'Shared Moment',
-        custom:         'Custom'
+        shared_moment: 'Shared Moment',
+        custom: 'Custom'
     };
 
     /**
@@ -6743,21 +6743,21 @@
      * highlighted memory span.
      */
     function showMemorySaveModal(el) {
-        const $el     = jQuery(el);
+        const $el = jQuery(el);
         const category = $el.data('mem-category') || 'custom';
-        const label    = $el.data('mem-label')    || '';
-        const content  = $el.data('mem-content')  || $el.text();
+        const label = $el.data('mem-label') || '';
+        const content = $el.data('mem-content') || $el.text();
 
         jQuery('#et-mem-save-modal').remove();
         jQuery('#et-mem-save-modal-overlay').remove();
 
         const { DOMPurify } = SillyTavern.libs;
-        const safeContent   = DOMPurify.sanitize(content, { ALLOWED_TAGS: [] });
-        const safeLabelHint = DOMPurify.sanitize(label,   { ALLOWED_TAGS: [] }); // used as placeholder only
+        const safeContent = DOMPurify.sanitize(content, { ALLOWED_TAGS: [] });
+        const safeLabelHint = DOMPurify.sanitize(label, { ALLOWED_TAGS: [] }); // used as placeholder only
 
         // Pill scope toggle — always defaults to per-character
         const charNameFn = window._etGetCharacterName;
-        const charName   = typeof charNameFn === 'function' ? charNameFn() : null;
+        const charName = typeof charNameFn === 'function' ? charNameFn() : null;
         const safeCharName = DOMPurify.sanitize(charName || 'Character', { ALLOWED_TAGS: [] });
 
         const scopePillHtml = `
@@ -6815,16 +6815,16 @@
         });
 
         function closeModal() {
-            const modal   = jQuery('#et-mem-save-modal');
+            const modal = jQuery('#et-mem-save-modal');
             const overlay = jQuery('#et-mem-save-modal-overlay');
             modal.removeClass('et-mem-save-modal-open');
             setTimeout(() => { modal.remove(); overlay.remove(); }, 220);
         }
 
         jQuery('#et-mem-save-confirm').on('click', function () {
-            const cat         = jQuery('#et-mem-save-modal .et-mem-save-category').val();
-            const lbl         = jQuery('#et-mem-save-modal .et-mem-save-label').val().trim();
-            const pin         = jQuery('#et-mem-save-modal .et-mem-save-pin').is(':checked');
+            const cat = jQuery('#et-mem-save-modal .et-mem-save-category').val();
+            const lbl = jQuery('#et-mem-save-modal .et-mem-save-label').val().trim();
+            const pin = jQuery('#et-mem-save-modal .et-mem-save-pin').is(':checked');
             const chosenScope = jQuery('#et-mem-save-modal .et-mem-scope-seg-active').data('scope') || 'per-character';
             if (memorySystem) {
                 const saved = memorySystem.addMemory({ category: cat, label: lbl, content: content, pinned: pin, scope: chosenScope });
@@ -6835,7 +6835,7 @@
             $el.addClass('et-mem-highlight-saved');
             // Refresh open memory lists
             if (settingsModal && typeof settingsModal.renderMemoryListInto === 'function') {
-                settingsModal.renderMemoryListInto('#et_memory_list',       '#et_memory_empty',       '#et_memory_list_label');
+                settingsModal.renderMemoryListInto('#et_memory_list', '#et_memory_empty', '#et_memory_list_label');
                 settingsModal.renderMemoryListInto('#et_memory_list_panel', '#et_memory_empty_panel', '#et_memory_list_label_panel');
             }
             toastr.success('Memory saved!');
@@ -6854,8 +6854,8 @@
      * Show a small "Remove Memory?" modal when the user re-clicks a saved highlight.
      */
     function showMemoryRemoveModal(el) {
-        const $el     = jQuery(el);
-        const memId   = $el.attr('data-mem-id') || null;
+        const $el = jQuery(el);
+        const memId = $el.attr('data-mem-id') || null;
         const content = $el.data('mem-content') || $el.text();
 
         jQuery('#et-mem-save-modal').remove();
@@ -6887,7 +6887,7 @@
         requestAnimationFrame(() => jQuery('#et-mem-save-modal').addClass('et-mem-save-modal-open'));
 
         function closeModal() {
-            const modal   = jQuery('#et-mem-save-modal');
+            const modal = jQuery('#et-mem-save-modal');
             const overlay = jQuery('#et-mem-save-modal-overlay');
             modal.removeClass('et-mem-save-modal-open');
             setTimeout(() => { modal.remove(); overlay.remove(); }, 220);
@@ -6899,7 +6899,7 @@
             }
             $el.removeClass('et-mem-highlight-saved').removeAttr('data-mem-id').removeAttr('data-mem-scope');
             if (settingsModal && typeof settingsModal.renderMemoryListInto === 'function') {
-                settingsModal.renderMemoryListInto('#et_memory_list',       '#et_memory_empty',       '#et_memory_list_label');
+                settingsModal.renderMemoryListInto('#et_memory_list', '#et_memory_empty', '#et_memory_list_label');
                 settingsModal.renderMemoryListInto('#et_memory_list_panel', '#et_memory_empty_panel', '#et_memory_list_label_panel');
             }
             toastr.success('Memory removed.');
@@ -6925,12 +6925,12 @@
         jQuery('#et-mem-save-modal-overlay').remove();
 
         const { DOMPurify } = SillyTavern.libs;
-        const content     = messageText.trim();
+        const content = messageText.trim();
         // Trim to 300 chars as a sensible default for the editable field
         const snippetText = content.length > 300 ? content.substring(0, 300) : content;
 
-        const charNameFn   = window._etGetCharacterName;
-        const charName     = typeof charNameFn === 'function' ? charNameFn() : null;
+        const charNameFn = window._etGetCharacterName;
+        const charName = typeof charNameFn === 'function' ? charNameFn() : null;
         const safeCharName = DOMPurify.sanitize(charName || 'Character', { ALLOWED_TAGS: [] });
 
         const scopePillHtml = `
@@ -6989,7 +6989,7 @@
         });
 
         function closeModal() {
-            const modal   = jQuery('#et-mem-save-modal');
+            const modal = jQuery('#et-mem-save-modal');
             const overlay = jQuery('#et-mem-save-modal-overlay');
             modal.removeClass('et-mem-save-modal-open');
             setTimeout(() => { modal.remove(); overlay.remove(); }, 220);
@@ -6998,15 +6998,15 @@
         jQuery('#et-mem-save-confirm').on('click', function () {
             const saveContent = jQuery('#et-mem-save-content-edit').val().trim();
             if (!saveContent) { toastr.warning('Memory content cannot be empty.'); return; }
-            const cat         = jQuery('#et-mem-save-modal .et-mem-save-category').val();
-            const lbl         = jQuery('#et-mem-save-modal .et-mem-save-label').val().trim();
-            const pin         = jQuery('#et-mem-save-modal .et-mem-save-pin').is(':checked');
+            const cat = jQuery('#et-mem-save-modal .et-mem-save-category').val();
+            const lbl = jQuery('#et-mem-save-modal .et-mem-save-label').val().trim();
+            const pin = jQuery('#et-mem-save-modal .et-mem-save-pin').is(':checked');
             const chosenScope = jQuery('#et-mem-save-modal .et-mem-scope-seg-active').data('scope') || 'per-character';
             if (memorySystem) {
                 memorySystem.addMemory({ category: cat, label: lbl, content: saveContent, pinned: pin, scope: chosenScope });
             }
             if (settingsModal && typeof settingsModal.renderMemoryListInto === 'function') {
-                settingsModal.renderMemoryListInto('#et_memory_list',       '#et_memory_empty',       '#et_memory_list_label');
+                settingsModal.renderMemoryListInto('#et_memory_list', '#et_memory_empty', '#et_memory_list_label');
                 settingsModal.renderMemoryListInto('#et_memory_list_panel', '#et_memory_empty_panel', '#et_memory_list_label_panel');
             }
             toastr.success('Memory saved!');
@@ -7173,7 +7173,7 @@
         });
 
         // Expose character accessor helpers for the settings-modal memory UI
-        window._etGetCharacterKey  = getCharacterKey;
+        window._etGetCharacterKey = getCharacterKey;
         window._etGetCharacterName = getCharacterName;
         // Expose live highlight style updater for settings-modal delegation
         window._etUpdateMemoryHlStyle = updateMemoryHighlightStyleInPanel;
@@ -7299,16 +7299,16 @@
             // Combined mode flag and group-scoped history accessors.
             // These allow the proactive scheduler to read/write the correct
             // history store regardless of session type.
-            isCombineMode:        () => groupManager ? groupManager.isCombineMode()          : false,
-            getCurrentGroupId:    () => groupManager ? groupManager.getCurrentGroupId()       : null,
-            getGroupChatHistory:  (groupId, charKey, untethered) =>
-                groupManager ? groupManager.getGroupChatHistory(groupId, charKey, untethered)  : [],
+            isCombineMode: () => groupManager ? groupManager.isCombineMode() : false,
+            getCurrentGroupId: () => groupManager ? groupManager.getCurrentGroupId() : null,
+            getGroupChatHistory: (groupId, charKey, untethered) =>
+                groupManager ? groupManager.getGroupChatHistory(groupId, charKey, untethered) : [],
             saveGroupChatHistory: (groupId, charKey, history, untethered) => {
                 if (groupManager) groupManager.saveGroupChatHistory(groupId, charKey, history, untethered);
             },
-            getCombineHistory:    (groupId, untethered) =>
-                groupManager ? groupManager.getCombineHistory(groupId, untethered)             : [],
-            saveCombineHistory:   (groupId, history, untethered) => {
+            getCombineHistory: (groupId, untethered) =>
+                groupManager ? groupManager.getCombineHistory(groupId, untethered) : [],
+            saveCombineHistory: (groupId, history, untethered) => {
                 if (groupManager) groupManager.saveCombineHistory(groupId, history, untethered);
             }
         });
@@ -7336,8 +7336,8 @@
         // Done AFTER loadSettings() so BASE_URL is guaranteed to be resolved.
         if (isMobileDevice() && !document.getElementById('et-mobile-styles')) {
             const mobileLink = document.createElement('link');
-            mobileLink.rel  = 'stylesheet';
-            mobileLink.id   = 'et-mobile-styles';
+            mobileLink.rel = 'stylesheet';
+            mobileLink.id = 'et-mobile-styles';
             mobileLink.href = `${BASE_URL}/mobile-style.css${VERSION_QUERY}`;
             document.head.appendChild(mobileLink);
         }
@@ -7399,7 +7399,7 @@
         }
 
         const context = SillyTavern.getContext();
-        
+
         if (stContextEmotion && typeof stContextEmotion.bindSTEvents === 'function') {
             stContextEmotion.bindSTEvents(context);
         }
