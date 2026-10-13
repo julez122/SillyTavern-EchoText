@@ -323,7 +323,7 @@ html.et-bg-light {
     width: var(--et-fab-size);
     height: var(--et-fab-size);
     border-radius: 50%;
-    background: rgb(237 83 149);
+    background: rgb(238, 83, 150);
     color: #fff;
     display: flex;
     align-items: center;
@@ -4432,10 +4432,12 @@ html.et-bg-light {
    ============================================================ */
 
 .et-settings-drawer .et-drawer-description {
-    font-size: 0.85rem;
+    font-size: 0.65rem;
     color: rgba(200, 210, 230, 0.85);
-    margin-bottom: 12px;
+    margin-bottom: 15px;
     line-height: 1.4;
+    border-bottom: 1px solid var(--SmartThemeBorderColor);
+    padding-bottom: inherit;
 }
 
 .et-settings-drawer .et-drawer-toggle-row {
