@@ -565,7 +565,8 @@
    PANEL ACCORDION (settings-in-panel) ” overflow-safe
    ============================================================ */
 
-.et-accordion-content {
+/* Limit scrolling and the viewport height cap to open sections so closed content can collapse. */
+.et-accordion-section.open .et-accordion-content {
     overflow-y: auto !important;
     -webkit-overflow-scrolling: touch;
     max-height: 70vh !important;
