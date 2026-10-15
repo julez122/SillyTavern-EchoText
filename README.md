@@ -6,7 +6,7 @@
 
 A [SillyTavern](https://github.com/SillyTavern/SillyTavern) extension that adds a floating, iMessage-style chat panel — a private side channel for casual, intimate conversations with any character, while your roleplay continues in the background.
 
-[![Version](https://img.shields.io/badge/version-1.2.7-blue.svg)](manifest.json)
+[![Version](https://img.shields.io/badge/version-1.2.8-blue.svg)](manifest.json)
 [![SillyTavern](https://img.shields.io/badge/SillyTavern-Extension-orange.svg)](https://github.com/SillyTavern/SillyTavern)
 
 </div>
@@ -30,6 +30,17 @@ It lives as a draggable, resizable panel floating over SillyTavern. Text a diffe
 ---
 
 ## Updates
+
+**v1.2.8**:
+- **A real master shutdown switch.** On a disabled startup, only the native drawer header and checkbox load. Runtime JavaScript, settings accordions, messaging UI, styles, fonts, observers and schedulers stay unloaded.
+- **Enable without reloading SillyTavern.** Files load asynchronously; setup yields between stages and the checkbox shows a temporary loading state. Saved enabled state is respected; a fresh installation starts off. Failed loading can be retried using the same checkbox.
+- **Stop without losing data.** Turning off aborts EchoText-owned requests and delays, stops client proactive/server synchronization, removes runtime UI/styles and unregisters its handlers. Re-enabling restores your saved configuration and conversations. Loaded code remains cached for the browser session, with fresh runtime instances on each enable.
+- **Reuse the panel, character lists and Settings dialog.** Closing them keeps their DOM, drafts, search and scroll position during the current activation. Lists refresh when cards, groups or favourites change, rather than on every open.
+- **Remove repeated canvas work.** Avatar accent colours and thumbnail checks share one reusable 1×1 canvas and cached results. Offscreen avatars wait until visible. Font previews load when their dropdown is opened.
+- **Responsive Appearance sliders.** Font size, blur, opacity and spacing preview only the changed CSS value once per frame. Labels update immediately; closing Settings flushes the final value without rebuilding conversations or character lists.
+- **Keep the character picker open through its opening frames.** A tap queued while it opens no longer dismisses it before it appears. The close button and subsequent outside taps still close it.
+
+EchoText cancels requests that accept an abort signal and ignores results arriving after shutdown. A job already delegated to a host API or remote plugin can only be cancelled if that integration exposes cancellation; disabling the client does not delete queued server messages or alter the server plugin's configuration.
 
 **v1.2.7**:
 
@@ -125,7 +136,7 @@ Everything is accessible from the EchoText Settings, opened via the three-dot ov
 
 | Setting                      | Description                                                                                     |
 | :--------------------------- | :---------------------------------------------------------------------------------------------- |
-| **Enable EchoText**          | Master on/off toggle for the floating button and panel                                          |
+| **Enable EchoText**          | Load or completely shut down the EchoText client without reloading SillyTavern                                          |
 | **Dynamic Emotion System**   | Track the character's emotional state across all 9 Plutchik emotions                            |
 | **Swiped Messages**          | Save previous AI responses when regenerating a message.                                         |
 | **Auto-Open on Reload**      | Automatically open the panel when SillyTavern loads                                             |

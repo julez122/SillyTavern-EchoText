@@ -13104,3 +13104,8 @@ textarea.et-mem-save-snippet-edit::placeholder {
   flex: 1;
   line-height: 1.3;
 }
+
+/* Skip layout/paint inside fully closed drawer sections; retain their collapse animation. */
+.et-accordion-section:not(.open):not(.closing) > .et-accordion-content {
+    content-visibility: hidden;
+}

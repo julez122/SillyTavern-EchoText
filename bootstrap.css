@@ -1,0 +1,21 @@
+/* Keep the native drawer's master checkbox readable without loading runtime styles. */
+.et-settings-drawer:not(.et-runtime-active) .et-drawer-toggle-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 0;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Let the host hide the runtime and status independently of theme display rules. */
+.et-settings-drawer [hidden] {
+    display: none !important;
+}
+
+/* Show asynchronous activation progress or an actionable loading failure. */
+.et-settings-drawer .et-bootstrap-status {
+    font-size: 0.9em;
+    opacity: 0.8;
+    margin-bottom: 8px;
+}
