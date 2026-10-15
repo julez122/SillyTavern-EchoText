@@ -132,8 +132,9 @@
 .et-dots-btn,
 .et-lightbox-close,
 .et-lightbox-prompt-toggle {
-  min-width: 44px !important;
-  min-height: 44px !important;
+  min-width: 30px !important;
+  min-height: 30px !important;
+  font-size: 12px !important;
 }
 
 /* ============================================================

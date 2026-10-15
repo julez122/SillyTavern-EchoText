@@ -543,8 +543,10 @@ html.et-bg-light {
 }
 
 .et-char-name {
-  font-weight: 700;
-  font-size: 1rem;
+  font-size: 15px;
+  margin-bottom: 2px;
+  font-weight: 100;
+  letter-spacing: 1px;
   color: var(--et-text);
   white-space: nowrap;
   overflow: hidden;
@@ -4032,14 +4034,15 @@ html.et-bg-light {
   background: var(--et-input-bg) !important;
   border: 1px solid var(--et-border) !important;
   border-radius: 20px !important;
-  padding: 10px 18px 12px 18px !important;
+  padding: 5px 15px 6px !important;
   display: flex;
   align-items: center;
   transition:
     border-color 0.2s,
     background 0.2s;
   box-sizing: border-box !important;
-  min-height: 48px;
+  min-height: fit-content;
+  align-self: center;
 }
 
 .et-input-wrap:focus-within {
@@ -4057,7 +4060,8 @@ html.et-bg-light {
   margin: 0 !important;
   color: var(--et-text) !important;
   font-family: var(--et-font-family) !important;
-  font-size: var(--et-font-size) !important;
+  font-size: 12px !important;
+  align-content: center;
   resize: none !important;
   outline: none !important;
   box-shadow: none !important;
@@ -4089,9 +4093,10 @@ html.et-bg-light {
   color: var(--et-text-muted);
 }
 
-.et-send-btn {
-  width: 42px;
-  height: 42px;
+.et-send-btn, button#et-send-btn {
+  width: fit-content;
+  height: fit-content;
+  align-self: center;
   border-radius: 50%;
   background: var(--et-theme-color);
   color: #fff;
@@ -4203,6 +4208,7 @@ html.et-bg-light {
   -webkit-backdrop-filter: blur(24px);
   transform: scale(0.95);
   transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  font-family: 'Noto Sans';
 }
 
 .et-settings-modal.et-settings-visible .et-settings-dialog {
@@ -4857,6 +4863,8 @@ html.et-bg-light {
   display: inline-flex;
   align-items: center;
   min-width: 0;
+  margin-bottom: 5px;
+  margin-top: 10px;
 }
 
 .et-char-name-row .et-char-name {
@@ -4914,7 +4922,7 @@ html.et-bg-light {
   backdrop-filter: blur(28px) saturate(1.5);
   -webkit-backdrop-filter: blur(28px) saturate(1.5);
   border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 16px;
+  border-radius: 5px;
   box-shadow:
     0 16px 48px rgba(0, 0, 0, 0.6),
     0 4px 16px rgba(0, 0, 0, 0.4),
@@ -4951,7 +4959,7 @@ html.et-bg-light {
   gap: 8px;
   padding: 12px 14px 10px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  font-size: 0.82rem;
+  font-size: 10px;
   font-weight: 700;
   color: var(--et-text);
   letter-spacing: 0.5px;
@@ -4983,7 +4991,8 @@ html.et-bg-light {
 
 /* Dominant emotion display */
 .et-emotion-popup-dominant {
-  padding: 8px 12px;
+  padding: 10px 15px;
+  margin-bottom: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -5056,8 +5065,9 @@ html.et-bg-light {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 4px 14px;
+  padding: 10px 14px;
   transition: background 0.12s;
+  border-bottom: 1px solid var(--white20a);
 }
 
 .et-emo-row:hover {
@@ -5537,7 +5547,7 @@ html.et-bg-light {
   backdrop-filter: blur(28px) saturate(1.5);
   -webkit-backdrop-filter: blur(28px) saturate(1.5);
   border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 16px;
+  border-radius: 5px;
   box-shadow:
     0 24px 60px rgba(0, 0, 0, 0.65),
     0 8px 20px rgba(0, 0, 0, 0.4),
@@ -5630,21 +5640,22 @@ html.et-bg-light {
 
 .et-status-main {
   --et-status-color: var(--et-theme-color);
-  font-size: 0.76rem;
-  font-weight: 700;
+  font-size: 10px;
+  font-style: italic;
+  font-weight: normal;
   color: color-mix(in srgb, var(--et-status-color) 58%, #fff 42%);
 }
 
 .et-status-chip {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 2px;
   font-size: 0.68rem;
   color: var(--et-text-muted);
   border: 1px solid rgba(255, 255, 255, 0.12);
   background: rgba(255, 255, 255, 0.04);
   border-radius: 999px;
-  padding: 2px 8px;
+  padding: 3px 5px;
   white-space: nowrap;
 }
 
@@ -5654,7 +5665,8 @@ html.et-bg-light {
 }
 
 .et-status-placeholder {
-  font-size: 0.72rem;
+  font-size: 10px;
+  font-style: italic;
   color: rgba(190, 190, 210, 0.75);
   letter-spacing: 0.2px;
 }
@@ -5664,13 +5676,14 @@ html.et-bg-light {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 22px;
-  height: 22px;
+  width: 15px;
+  height: 15px;
+  margin-right: 3px;
   border-radius: 50%;
   background: color-mix(in srgb, currentColor 14%, rgba(255, 255, 255, 0.04));
   border: 1px solid
     color-mix(in srgb, currentColor 36%, rgba(255, 255, 255, 0.12));
-  font-size: 0.7rem;
+  font-size: 10px;
   flex-shrink: 0;
   vertical-align: middle;
 }
@@ -5697,27 +5710,37 @@ html.et-bg-light {
 .et-uc-status-chip {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 2px;
   min-width: 0;
   overflow: hidden;
-  padding-right: 6px;
+  padding: 3px 5px;
 }
 
 .et-uc-status-main {
+  font-size: 10px;
+  font-style: italic;
+  font-weight: normal;
   flex-shrink: 0;
   display: inline-flex;
   align-items: center;
   line-height: 22px;
 }
 
+#et-panel-status-content > span > span.et-status-main {
+  font-style: normal;
+  padding-left: 5px;
+  font-weight: bold;
+}
+
 .et-uc-status-icon {
-  width: 22px;
-  height: 22px;
+  width: 15px;
+  height: 15px;
+  margin-right: 3px;
   font-size: 0.7rem;
 }
 
 .et-uc-status-icon i {
-  font-size: 0.82rem;
+  font-size: 10px;
   opacity: 0.95;
 }
 
@@ -5731,7 +5754,7 @@ html.et-bg-light {
   max-height: min(340px, calc(100% - 136px));
   background: rgba(14, 14, 22, 0.96);
   border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 14px;
+  border-radius: 5px;
   box-shadow:
     0 18px 42px rgba(0, 0, 0, 0.55),
     inset 0 1px 0 rgba(255, 255, 255, 0.08);
@@ -5765,7 +5788,8 @@ html.et-bg-light {
   align-items: center;
   gap: 8px;
   padding: 12px 14px 8px;
-  font-size: 0.82rem;
+  font-size: 10px;
+  padding-bottom: 15px;
   font-weight: 700;
   color: var(--et-text);
   letter-spacing: 0.5px;
@@ -5788,12 +5812,13 @@ html.et-bg-light {
   position: absolute;
   left: 26px;
   color: var(--et-text-muted);
-  font-size: 0.85rem;
+  font-size: 0.6rem;
   pointer-events: none;
 }
 
 .et-char-picker-search input {
-  width: 100%;
+  width: fit-content;
+  font-size: 10px !important;
   background: rgba(0, 0, 0, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 6px;
@@ -6044,6 +6069,9 @@ html.et-bg-light {
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.55px;
+  margin-bottom: 10px;
+  align-self: center;
+  padding-top: 15px;
   text-transform: uppercase;
   color: color-mix(in srgb, var(--et-theme-color) 55%, #e8e8f0);
   opacity: 1;
@@ -6333,7 +6361,7 @@ html.et-bg-light {
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   background: rgba(0, 0, 0, 0.25);
   flex-shrink: 0;
-  font-size: 0.88rem;
+  font-size: 13px;
   font-weight: 600;
   color: var(--et-text);
   letter-spacing: 0.2px;
@@ -6536,6 +6564,7 @@ html.et-bg-light {
   color: rgba(220, 228, 245, 0.92);
   margin-bottom: 6px;
   margin-top: 2px;
+  padding-top: 10px;
   padding-bottom: 4px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.07);
 }
@@ -6597,7 +6626,7 @@ html.et-bg-light {
     box-shadow 0.16s,
     transform 0.14s cubic-bezier(0.34, 1.56, 0.64, 1);
   line-height: 1.2;
-  min-height: 74px;
+  min-height: auto;
   position: relative;
   overflow: hidden;
 }
@@ -6679,7 +6708,7 @@ html.et-bg-light {
   align-items: center;
   gap: 8px;
   margin-top: 10px;
-  margin-bottom: 2px;
+  margin-bottom: 15px;
 }
 
 .et-uc-slider-label {
@@ -8768,8 +8797,8 @@ html.et-bg-light {
 }
 
 .et-no-char-avatar {
-  width: 36px;
-  height: 36px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -8894,12 +8923,13 @@ html.et-bg-light {
 /* EchoText title — hidden normally, shown when no char is selected */
 .et-panel-echotext-title {
   display: none;
-  font-size: 1rem;
+  font-size: 10px;
   font-weight: 700;
   color: var(--et-theme-color);
   letter-spacing: 0.04em;
   user-select: none;
   white-space: nowrap;
+  width: fit-content;
 }
 .et-panel-header-no-char .et-panel-echotext-title {
   display: inline-block;
