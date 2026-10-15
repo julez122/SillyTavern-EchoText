@@ -329,8 +329,22 @@ html.et-bg-light {
    FLOATING ACTION BUTTON (FAB)
    ============================================================ */
 
+/* Keep dialogs in the portal's viewport box across desktop/compact transitions. */
+#et-portal > .et-settings-modal,
+#et-portal > .et-gallery-overlay,
+#et-portal > .et-sl-overlay,
+#et-portal > .et-te-overlay,
+#et-portal > .et-ctx-overlay,
+#et-portal > .et-avatar-lightbox,
+#et-portal > .et-generated-image-lightbox-overlay,
+#et-portal > .et-confirm-overlay,
+#et-portal > .et-mem-save-modal-overlay {
+  position: absolute;
+}
+
+/* Anchor the button to the viewport-sized portal on every screen width. */
 #et-fab {
-  position: fixed;
+  position: absolute;
   width: var(--et-fab-size);
   height: var(--et-fab-size);
   border-radius: 50%;
@@ -423,8 +437,9 @@ html.et-bg-light {
    FLOATING PANEL
    ============================================================ */
 
+/* Use the portal's real height even when the host's transformed root is empty. */
 .et-panel {
-  position: fixed;
+  position: absolute;
   display: flex;
   flex-direction: column;
   z-index: 2001;
@@ -4795,17 +4810,20 @@ html.et-bg-light {
    MOBILE RESPONSIVE
    ============================================================ */
 
-@media (max-width: 600px) {
+/* Share the host's compact breakpoint with JavaScript and mobile-style.css. */
+@media (max-width: 1000px) {
+  /* Fill the portal immediately, including while the compact stylesheet loads. */
   .et-panel {
-    position: fixed !important;
+    position: absolute !important;
     left: 0 !important;
     right: 0 !important;
     bottom: 0 !important;
-    top: auto !important;
+    top: 0 !important;
     width: 100% !important;
-    height: 75vh !important;
-    border-radius: var(--et-radius-lg) var(--et-radius-lg) 0 0;
-    border-bottom: none;
+    height: 100% !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    border-radius: 0;
   }
 
   .et-resize-handle {
@@ -5703,11 +5721,14 @@ html.et-bg-light {
   opacity: 0.95;
 }
 
+/* Keep a floating picker inside the available panel height after rotation/resizing. */
 .et-char-picker {
+  display: flex;
+  flex-direction: column;
   position: absolute;
   z-index: 2035;
   width: min(300px, calc(100% - 16px));
-  max-height: 340px;
+  max-height: min(340px, calc(100% - 136px));
   background: rgba(14, 14, 22, 0.96);
   border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 14px;
@@ -5815,6 +5836,9 @@ html.et-bg-light {
 }
 
 .et-char-picker-list {
+  /* Allow this scroll area to shrink inside a short landscape picker. */
+  flex: 1 1 auto;
+  min-height: 0;
   display: flex;
   flex-direction: column;
   max-height: 340px;

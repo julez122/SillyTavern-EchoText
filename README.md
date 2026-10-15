@@ -6,7 +6,7 @@
 
 A [SillyTavern](https://github.com/SillyTavern/SillyTavern) extension that adds a floating, iMessage-style chat panel — a private side channel for casual, intimate conversations with any character, while your roleplay continues in the background.
 
-[![Version](https://img.shields.io/badge/version-1.2.5-blue.svg)](manifest.json)
+[![Version](https://img.shields.io/badge/version-1.2.7-blue.svg)](manifest.json)
 [![SillyTavern](https://img.shields.io/badge/SillyTavern-Extension-orange.svg)](https://github.com/SillyTavern/SillyTavern)
 
 </div>
@@ -30,6 +30,12 @@ It lives as a draggable, resizable panel floating over SillyTavern. Text a diffe
 ---
 
 ## Updates
+
+**v1.2.7**:
+
+- Responsive layout follows the current window width, including desktop Chrome with docked DevTools. At 1,000 px or narrower, EchoText uses its full-screen layout; widening the window restores the saved floating layout.
+- The panel, floating button, and open settings remain visible when the window is resized. Resizing preserves the current conversation, unsent text, and character-search text without overwriting saved desktop positions.
+- Desktop dragging and resizing remain available after opening the panel in a narrow window and then widening it. Touch devices continue to wait for a deliberate field tap before focusing text input.
 
 **v1.2.5**:
 
@@ -79,7 +85,7 @@ It lives as a draggable, resizable panel floating over SillyTavern. Text a diffe
 | 🧠  | **Memory System**          | Highlight shared moments — characters will remember them in future chats    |
 | 😄  | **Emoji Reactions**        | React to messages, and characters will react back to yours                  |
 | 👥  | **Group Chat Support**     | Text multiple characters at once, each independently active                 |
-| 📱  | **Mobile Friendly**        | Fully adapted for iPhone and iPad                                           |
+| 📱  | **Responsive Layout**      | Adapts to phones, tablets, and narrow desktop windows as the viewport changes |
 
 ---
 

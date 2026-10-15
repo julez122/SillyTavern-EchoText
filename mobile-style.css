@@ -1,6 +1,7 @@
 /* ============================================================
    EchoText Mobile / iOS Stylesheet
-   Loaded ONLY when isMobileDevice() returns true in index.js.
+   Applied at viewport widths up to 1000px through the link's media query.
+   Narrow desktop windows and phones share the same responsive layout.
    All rules use !important to override inline styles set by the
    desktop positioning logic without touching style.css itself.
    ============================================================ */
@@ -274,10 +275,11 @@
    ============================================================ */
 
 .et-settings-modal {
-  width: 100vw !important;
-  height: 100dvh !important;
-  max-width: 100vw !important;
-  max-height: 100dvh !important;
+  /* Follow the portal when the visible viewport shrinks for an on-screen keyboard. */
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
   border-radius: 0 !important;
   top: 0 !important;
   left: 0 !important;

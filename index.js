@@ -114,18 +114,22 @@
     let _onGroupUpdated = null;
 
     // ============================================================
-    // MOBILE / iOS DETECTION & VIEWPORT HELPERS
+    // RESPONSIVE LAYOUT & INPUT HELPERS
     // ============================================================
 
-    function isMobileDevice() {
-        return /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent)
-            || ('ontouchstart' in window && window.innerWidth < 1024);
+    // Match the host's narrow layout, including desktop windows beside DevTools.
+    const COMPACT_VIEWPORT_QUERY = '(max-width: 1000px)';
+    function isCompactViewport() {
+        return window.matchMedia(COMPACT_VIEWPORT_QUERY).matches;
     }
 
-    function isIOS() {
-        return /iPad|iPhone|iPod/.test(navigator.userAgent)
-            || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    // Keyboard/finger behavior follows the input device, independently of layout.
+    function usesTouchInput() {
+        return window.matchMedia('(pointer: coarse)').matches;
     }
+
+    let viewportCleanup = null;
+    let viewportFrame = null;
 
     // Use visualViewport when available — reports the region actually visible
     // to the user on iOS (excludes address bar, keyboard, etc.).
@@ -138,15 +142,13 @@
     }
 
     // ============================================================
-    // iOS PORTAL — escape SillyTavern's body { position: fixed }
+    // VIEWPORT PORTAL — escape SillyTavern's body { position: fixed }
     // ============================================================
     // SillyTavern's mobile-styles.css applies:
     //   body { position: fixed; overflow: hidden; }
-    // which breaks position:fixed children appended directly to body.
-    //
-    // Fix: mount a <div id="et-portal"> as a direct sibling of <body>
-    // (child of <html>) to escape SillyTavern's clipped/fixed body.
-    // We use a high z-index and dynamic viewport units for total coverage.
+    // The transformed <html> can then have zero layout height. Give the portal
+    // explicit visible-viewport dimensions and position its children absolutely
+    // inside that box, rather than anchoring fixed children to the empty root.
     const ET_PORTAL_ID = 'et-portal';
 
     function ensurePortal() {
@@ -156,7 +158,7 @@
             portal.id = ET_PORTAL_ID;
             // Max z-index, fixed fullscreen, tracking dynamic viewport (dvh/dvw)
             // We use color:initial and text-align:initial to ensureST defaults don't bleed in.
-            portal.style.cssText = `position:fixed; top:0; left:0; width:100dvw; height:100dvh; z-index:${isMobileDevice() ? '2147483647' : '1500'}; pointer-events:none; display:block !important; border:none !important; margin:0 !important; padding:0 !important;`;
+            portal.style.cssText = 'position:fixed; top:0; left:0; width:100dvw; height:100dvh; z-index:1500; pointer-events:none; display:block !important; border:none !important; margin:0 !important; padding:0 !important;';
 
             // Try appending to html first to escape body bugs
             try {
@@ -167,6 +169,76 @@
             }
         }
         return portal;
+    }
+
+    function positionPanelInViewport() {
+        const panel = jQuery('#et-panel');
+        if (!panel.length) return;
+
+        if (isCompactViewport()) {
+            // CSS fills the portal. Never replace the saved desktop geometry.
+            panel.css({ width: '', height: '', left: '', top: '', right: '', bottom: '', minWidth: '', minHeight: '', transform: '' });
+            return;
+        }
+
+        const maxWidth = Math.max(1, getViewportWidth() - 32);
+        const maxHeight = Math.max(1, getViewportHeight() - 32);
+        const width = Math.min(settings.panelWidth || 380, maxWidth);
+        const height = Math.min(settings.panelHeight || 600, maxHeight);
+        const left = settings.panelLeft ?? Math.max(16, getViewportWidth() - width - 24);
+        const top = settings.panelTop ?? Math.max(16, (getViewportHeight() - height) / 2);
+        panel.css({
+            width: width + 'px', height: height + 'px',
+            minWidth: Math.min(300, maxWidth) + 'px', minHeight: Math.min(400, maxHeight) + 'px',
+            left: Math.max(16, Math.min(getViewportWidth() - width - 16, left)) + 'px',
+            top: Math.max(16, Math.min(getViewportHeight() - height - 16, top)) + 'px',
+            right: '', bottom: '',
+        });
+    }
+
+    function syncViewportLayout() {
+        const portal = document.getElementById(ET_PORTAL_ID);
+        if (!portal) return;
+        const viewport = window.visualViewport;
+        const root = document.documentElement;
+        const rootRect = root.getBoundingClientRect();
+        const transformedRoot = getComputedStyle(root).transform !== 'none';
+        // Compensate if the transformed root has scrolled under the viewport.
+        portal.style.left = ((viewport?.offsetLeft || 0) - (transformedRoot ? rootRect.left : 0)) + 'px';
+        portal.style.top = ((viewport?.offsetTop || 0) - (transformedRoot ? rootRect.top : 0)) + 'px';
+        portal.style.width = getViewportWidth() + 'px';
+        portal.style.height = getViewportHeight() + 'px';
+        portal.style.zIndex = isCompactViewport() ? '2147483647' : '1500';
+        positionFab();
+        positionPanelInViewport();
+        if (characterPicker?.positionCharacterPicker) characterPicker.positionCharacterPicker();
+    }
+
+    function scheduleViewportLayout() {
+        if (viewportFrame !== null) return;
+        viewportFrame = requestAnimationFrame(() => {
+            viewportFrame = null;
+            syncViewportLayout();
+        });
+    }
+
+    function initializeViewportLayout() {
+        if (viewportCleanup) viewportCleanup();
+        const viewport = window.visualViewport;
+        window.addEventListener('resize', scheduleViewportLayout);
+        window.addEventListener('scroll', scheduleViewportLayout, { passive: true });
+        viewport?.addEventListener('resize', scheduleViewportLayout);
+        viewport?.addEventListener('scroll', scheduleViewportLayout);
+        viewportCleanup = () => {
+            window.removeEventListener('resize', scheduleViewportLayout);
+            window.removeEventListener('scroll', scheduleViewportLayout);
+            viewport?.removeEventListener('resize', scheduleViewportLayout);
+            viewport?.removeEventListener('scroll', scheduleViewportLayout);
+            if (viewportFrame !== null) cancelAnimationFrame(viewportFrame);
+            viewportFrame = null;
+            viewportCleanup = null;
+        };
+        syncViewportLayout();
     }
 
     function portalAppend(html) {
@@ -184,18 +256,17 @@
     }
 
     /**
-     * On mobile the portal lives on <html> with z-index MAX, so anything left
+     * On narrow viewports the portal lives on <html> with z-index MAX, so anything left
      * in <body> (where external modal modules append their DOM) renders beneath
      * the panel.  Call this immediately after triggering any modal open; it
      * relocates the modal root element into the portal so it shares the same
      * stacking context and appears above the panel.
      *
-     * Safe to call on desktop too — it's a no-op when !isMobileDevice().
+     * Use the same parent on desktop so already-open modals survive resizing.
      *
      * @param {string} selector  CSS selector for the modal's root element
      */
     function moveModalToPortal(selector) {
-        if (!isMobileDevice()) return;
         const portal = ensurePortal();
         const tryMove = () => {
             const el = document.querySelector(selector);
@@ -4215,7 +4286,7 @@
         fab.css({ width: size + 'px', height: size + 'px' });
 
         // 24 px on mobile clears the home indicator; 16 px on desktop.
-        const margin = isMobileDevice() ? 24 : 16;
+        const margin = isCompactViewport() ? 24 : 16;
         const vw = getViewportWidth();
         const vh = getViewportHeight();
 
@@ -4332,7 +4403,7 @@
         const size = fab.offsetWidth;
         // Match the margin used in positionFab(): 24 px on mobile (clears home
         // indicator), 16 px on desktop.
-        const margin = isMobileDevice() ? 24 : 16;
+        const margin = isCompactViewport() ? 24 : 16;
         const cx = rect.left + size / 2;
         const cy = rect.top + size / 2;
         // Use visual viewport so snap calculations are correct on iOS
@@ -4673,9 +4744,10 @@
             const portal = ensurePortal();
             portal.appendChild(panelEl);
         }
+        syncViewportLayout();
         const panel = jQuery('#et-panel');
 
-        if (isMobileDevice()) {
+        if (isCompactViewport()) {
             // Mobile: CSS (mobile-style.css) handles full-screen sizing via inset/width/height.
             // Skip saved panelLeft/panelTop/panelWidth/panelHeight — desktop values are
             // unsuitable for a phone viewport. Use fade-only animation (no scale, which
@@ -4686,20 +4758,8 @@
                 requestAnimationFrame(() => panel.css({ opacity: 1 }));
             });
         } else {
-            // Desktop: restore saved size and position, use spring-scale animation.
-            const panelW = settings.panelWidth || 380;
-            const panelH = settings.panelHeight || 600;
-            const defaultLeft = Math.max(20, window.innerWidth - panelW - 24);
-            const defaultTop = Math.max(20, (window.innerHeight - panelH) / 2);
-
-            const startLeft = settings.panelLeft != null
-                ? Math.max(0, Math.min(window.innerWidth - panelW, settings.panelLeft))
-                : defaultLeft;
-            const startTop = settings.panelTop != null
-                ? Math.max(0, Math.min(window.innerHeight - 60, settings.panelTop))
-                : defaultTop;
-
-            panel.css({ width: panelW + 'px', height: panelH + 'px', left: startLeft + 'px', top: startTop + 'px', opacity: 0, transform: 'scale(0.85)' });
+            // Desktop: geometry is already clamped; keep the spring-scale animation.
+            panel.css({ opacity: 0, transform: 'scale(0.85)' });
 
             requestAnimationFrame(() => {
                 panel.css({ transition: 'opacity 0.25s ease, transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1)' });
@@ -4729,19 +4789,11 @@
         // this call the overflow items would remain hidden after every panel rebuild).
         applySelectedCharacterToPanel();
 
-        setTimeout(() => { if (!isMobileDevice()) jQuery('#et-input').focus(); }, 300);
+        setTimeout(() => { if (!usesTouchInput()) jQuery('#et-input').focus(); }, 300);
     }
 
     function closePanel() {
         if (!panelOpen) return;
-
-        // Remove visualViewport resize/scroll listeners that were attached in
-        // bindPanelEvents() to keep the panel above the iOS on-screen keyboard.
-        const _panelEl = document.getElementById('et-panel');
-        if (_panelEl && typeof _panelEl._vvCleanup === 'function') {
-            _panelEl._vvCleanup();
-            _panelEl._vvCleanup = null;
-        }
 
         closeCharacterPicker();
 
@@ -4994,27 +5046,7 @@
             }
         });
 
-        // ── iOS / mobile: keep the panel height in sync with the visual viewport ──
-        // When the on-screen keyboard opens, visualViewport.height shrinks. We update
-        // the panel height & top so the input bar stays visible above the keyboard.
-        if (window.visualViewport && isMobileDevice()) {
-            const panelEl = document.getElementById('et-panel');
-            if (panelEl) {
-                const onVVResize = () => {
-                    if (!panelOpen) return;
-                    panelEl.style.height = window.visualViewport.height + 'px';
-                    panelEl.style.top = window.visualViewport.offsetTop + 'px';
-                };
-                window.visualViewport.addEventListener('resize', onVVResize);
-                window.visualViewport.addEventListener('scroll', onVVResize);
-                // Store a cleanup callback on the element so closePanel() can
-                // remove the listeners when the panel is destroyed.
-                panelEl._vvCleanup = () => {
-                    window.visualViewport.removeEventListener('resize', onVVResize);
-                    window.visualViewport.removeEventListener('scroll', onVVResize);
-                };
-            }
-        }
+        // The runtime's shared viewport listeners also handle keyboard resizing.
     }
 
     function openAvatarLightbox() {
@@ -5130,9 +5162,7 @@
     // ============================================================
 
     function makePanelDraggable() {
-        // Dragging is disabled on mobile — the panel fills the full viewport
-        // and is not a floating window. CSS also removes the grab cursor.
-        if (isMobileDevice()) return;
+        // Bind once even when opened narrow; allow dragging after widening.
 
         const panel = document.getElementById('et-panel');
         const handle = document.getElementById('et-panel-drag-handle');
@@ -5142,7 +5172,7 @@
         let startX, startY, origLeft, origTop;
 
         handle.addEventListener('mousedown', (e) => {
-            if (e.button !== 0) return;
+            if (isCompactViewport() || e.button !== 0) return;
             if (e.target.closest('.et-header-btn, button, input, select, textarea, #et-char-name, #et-panel-status-trigger')) return;
             isDragging = true;
             startX = e.clientX; startY = e.clientY;
@@ -5155,6 +5185,7 @@
         });
 
         handle.addEventListener('touchstart', (e) => {
+            if (isCompactViewport()) return;
             if (e.target.closest('.et-header-btn, button, input, select, textarea, #et-char-name, #et-panel-status-trigger')) return;
             const t = e.touches[0];
             isDragging = true;
@@ -5165,7 +5196,7 @@
         }, { passive: true });
 
         handle.addEventListener('touchmove', (e) => {
-            if (!isDragging) return;
+            if (!isDragging || isCompactViewport()) return;
             const t = e.touches[0];
             const dx = t.clientX - startX, dy = t.clientY - startY;
             panel.style.left = Math.max(0, Math.min(window.innerWidth - panel.offsetWidth, origLeft + dx)) + 'px';
@@ -5176,13 +5207,14 @@
             if (!isDragging) return;
             isDragging = false;
             panel.style.transition = '';
+            if (isCompactViewport()) return;
             settings.panelLeft = parseInt(panel.style.left) || 0;
             settings.panelTop = parseInt(panel.style.top) || 0;
             saveSettings();
         });
 
         function onMove(e) {
-            if (!isDragging) return;
+            if (!isDragging || isCompactViewport()) return;
             const dx = e.clientX - startX, dy = e.clientY - startY;
             panel.style.left = Math.max(0, Math.min(window.innerWidth - panel.offsetWidth, origLeft + dx)) + 'px';
             panel.style.top = Math.max(0, Math.min(window.innerHeight - 60, origTop + dy)) + 'px';
@@ -5194,6 +5226,7 @@
             panel.style.transition = '';
             document.removeEventListener('mousemove', onMove);
             document.removeEventListener('mouseup', onUp);
+            if (isCompactViewport()) return;
             settings.panelLeft = parseInt(panel.style.left) || 0;
             settings.panelTop = parseInt(panel.style.top) || 0;
             saveSettings();
@@ -5201,9 +5234,7 @@
     }
 
     function makePanelResizable() {
-        // Resizing is disabled on mobile — the panel is full-screen.
-        // Resize handles are also hidden via mobile-style.css.
-        if (isMobileDevice()) return;
+        // Keep handlers available when a panel opened narrow becomes a window.
 
         const panel = jQuery('#et-panel');
         if (!panel.length) return;
@@ -5215,6 +5246,7 @@
             let startX, startY, startW, startH, startLeft, startTop;
 
             handle.addEventListener('mousedown', (e) => {
+                if (isCompactViewport() || e.button !== 0) return;
                 active = true;
                 startX = e.clientX; startY = e.clientY;
                 startW = panel[0].offsetWidth; startH = panel[0].offsetHeight;
@@ -5226,7 +5258,7 @@
             });
 
             function onMove(e) {
-                if (!active) return;
+                if (!active || isCompactViewport()) return;
                 const dx = e.clientX - startX, dy = e.clientY - startY;
                 const MIN_W = 300, MIN_H = 400;
                 let newW = startW, newH = startH, newL = startLeft, newT = startTop;
@@ -5244,6 +5276,7 @@
                 active = false;
                 document.removeEventListener('mousemove', onMove);
                 document.removeEventListener('mouseup', onUp);
+                if (isCompactViewport()) return;
                 settings.panelWidth = parseInt(panel.css('width')) || 380;
                 settings.panelHeight = parseInt(panel.css('height')) || 600;
                 settings.panelLeft = parseInt(panel.css('left')) || 0;
@@ -5572,7 +5605,7 @@
         // On mobile the panel lives inside the portal on <html>, so anything
         // appended to <body> renders behind it. Append the lightbox to the
         // portal directly so it stacks above the panel.
-        (isMobileDevice() ? jQuery(ensurePortal()) : jQuery('body')).append(lightbox);
+        jQuery(ensurePortal()).append(lightbox);
         requestAnimationFrame(() => lightbox.addClass('et-generated-image-lightbox-open'));
 
         // ── Navigation ────────────────────────────────────────────────────────
@@ -5942,7 +5975,7 @@
         });
 
         // Bind touch-swipe gesture on the last char bubble (mobile only)
-        if (settings.swipedMessages && isMobileDevice() && lastCharMsgIndex >= 0) {
+        if (settings.swipedMessages && usesTouchInput() && lastCharMsgIndex >= 0) {
             bindBubbleTouchSwipe(inner, lastCharMsgIndex);
         }
 
@@ -7228,7 +7261,7 @@
             },
             getSelectedCharacterKey: () => selectedCharacterKey,
             isPanelOpen: () => panelOpen,
-            isMobileDevice: () => isMobileDevice(),
+            usesTouchInput,
             renderGroupUnreadIndicators: () => { if (typeof renderGroupUnreadIndicators === 'function') renderGroupUnreadIndicators(); },
             getSwitchGroupCharFn: () => (typeof switchGroupChar === 'function' ? switchGroupChar : null),
             getOnCombineModeToggleFn: () => (typeof onCombineModeToggle === 'function' ? onCombineModeToggle : null),
@@ -7332,13 +7365,14 @@
 
         loadSettings();
 
-        // Inject mobile-specific stylesheet when running on a touch device.
-        // Done AFTER loadSettings() so BASE_URL is guaranteed to be resolved.
-        if (isMobileDevice() && !document.getElementById('et-mobile-styles')) {
+        // Let CSS switch the compact layout in both directions without a reload.
+        if (!document.getElementById('et-mobile-styles')) {
             const mobileLink = document.createElement('link');
             mobileLink.rel = 'stylesheet';
             mobileLink.id = 'et-mobile-styles';
+            mobileLink.media = COMPACT_VIEWPORT_QUERY;
             mobileLink.href = `${BASE_URL}/mobile-style.css${VERSION_QUERY}`;
+            mobileLink.addEventListener('load', scheduleViewportLayout, { once: true });
             document.head.appendChild(mobileLink);
         }
 
@@ -7356,6 +7390,7 @@
         ensurePortal();
         const fabEl = document.getElementById('et-fab');
         if (fabEl) document.getElementById(ET_PORTAL_ID).appendChild(fabEl);
+        initializeViewportLayout();
 
         jQuery('#et-fab').on('click', function () {
             if (fabDragging) return;
@@ -7464,6 +7499,7 @@
     }
 
     function destroyEchoText() {
+        if (viewportCleanup) viewportCleanup();
         const context = SillyTavern.getContext();
         if (context && context.eventSource) {
             if (_onChatChanged) {
